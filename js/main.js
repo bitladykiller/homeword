@@ -499,17 +499,102 @@ function initPlantCards() {
 }
 
 /**
- * 个人行动卡生成交互（action.html）
- * 勾选行动并生成行动卡，支持逐项动画
+ * 小葵康复系统 + 个人行动卡生成交互（action.html）
+ * 勾选行动实时改变小葵状态，生成行动卡
  */
 function initActionCard() {
     const form = document.getElementById('actionForm');
     const resultPanel = document.getElementById('actionCardResult');
     const hintPanel = document.getElementById('actionHint');
     const actionsList = document.getElementById('cardActions');
+    const container = document.getElementById('actionContainer');
 
     if (!form) return;
 
+    // ===== 康复系统：监听 checkbox 变化，更新 data-healed 属性 =====
+    const checkboxes = form.querySelectorAll('input[name="action"]');
+    const totalActions = checkboxes.length || 6;
+    const healingPercent = document.getElementById('healingPercent');
+    const healingRing = document.getElementById('healingRing');
+    const leafStatus = document.getElementById('leafStatus');
+    const rootStatus = document.getElementById('rootStatus');
+    const photoStatus = document.getElementById('photoStatus');
+    const healingMessage = document.getElementById('healingMessage');
+
+    const healingMessages = [
+        '选择你的行动，帮助小葵恢复健康...',
+        '小葵感受到了你的关心，继续加油！',
+        '小葵的叶片开始有了光泽...',
+        '小葵的根系正在恢复活力！',
+        '小葵的光合作用效率在提升！',
+        '小葵几乎完全康复了，再选一项吧！',
+        '太棒了！小葵完全康复了！'
+    ];
+
+    function updateHealingState() {
+        const checkedCount = form.querySelectorAll('input[name="action"]:checked').length;
+
+        // 在容器上设置 data-healed，让 CSS 兄弟选择器能匹配到
+        if (container) {
+            container.setAttribute('data-healed', checkedCount.toString());
+        }
+
+        // 更新百分比和进度环角度，避免文字与圆环显示不同步。
+        const percent = Math.round((checkedCount / totalActions) * 100);
+        if (healingPercent) {
+            healingPercent.textContent = percent + '%';
+        }
+        if (healingRing) {
+            const progressDeg = checkedCount === totalActions ? 360 : (checkedCount / totalActions) * 360;
+            healingRing.style.setProperty('--ring-progress', progressDeg + 'deg');
+            healingRing.setAttribute('aria-valuenow', percent.toString());
+        }
+
+        // 分析选中的康复类型（用父元素遍历，避免 :has 兼容性问题）
+        const checkedInputs = form.querySelectorAll('input[name="action"]:checked');
+        let hasLeafHeal = false, hasRootHeal = false, hasPhotoHeal = false;
+
+        checkedInputs.forEach(input => {
+            const optionLabel = input.closest('.action-option');
+            if (optionLabel) {
+                const healType = optionLabel.dataset.heal;
+                if (healType === 'leaf') hasLeafHeal = true;
+                if (healType === 'root') hasRootHeal = true;
+                if (healType === 'photo') hasPhotoHeal = true;
+            }
+        });
+
+        // 更新状态文字
+        if (leafStatus) {
+            if (checkedCount >= 5) leafStatus.textContent = '健康';
+            else if (hasLeafHeal) leafStatus.textContent = '好转中';
+            else leafStatus.textContent = '受损';
+        }
+        if (rootStatus) {
+            if (checkedCount >= 5) rootStatus.textContent = '健康';
+            else if (hasRootHeal) rootStatus.textContent = '恢复中';
+            else rootStatus.textContent = '异常';
+        }
+        if (photoStatus) {
+            if (checkedCount >= 5) photoStatus.textContent = '正常';
+            else if (hasPhotoHeal) photoStatus.textContent = '回升中';
+            else photoStatus.textContent = '下降';
+        }
+
+        // 更新提示语
+        if (healingMessage) {
+            healingMessage.textContent = healingMessages[checkedCount] || healingMessages[0];
+        }
+    }
+
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateHealingState);
+    });
+
+    // 初始化状态
+    updateHealingState();
+
+    // ===== 生成行动卡 =====
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -524,6 +609,7 @@ function initActionCard() {
         if (selectedValues.length === 0) {
             if (hintPanel) hintPanel.hidden = false;
             if (resultPanel) resultPanel.hidden = true;
+            if (container) container.classList.remove('action-card-generated');
             return;
         }
 
@@ -559,6 +645,15 @@ function initActionCard() {
                 resultPanel.style.opacity = '1';
                 resultPanel.style.transform = 'translateY(0) scale(1)';
             });
+        }
+
+        if (container) {
+            container.classList.remove('action-card-generated');
+            void container.offsetWidth;
+            container.classList.add('action-card-generated');
+            window.setTimeout(() => {
+                container.classList.remove('action-card-generated');
+            }, 1100);
         }
 
         // 滚动到结果

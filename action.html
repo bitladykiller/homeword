@@ -26,55 +26,209 @@
     </div>
 
     <main class="main-content">
-        <div class="container">
+        <div class="container" id="actionContainer" data-healed="0">
             <section class="detail-header">
                 <h1>个人行动：让小葵重新拥有健康环境</h1>
                 <p>保护植物并不只是大型治理工程，每个人的日常选择也会影响环境。选择你愿意采取的行动，生成你的绿色行动卡。</p>
             </section>
 
-            <div class="status-panel">
-                <h3>小葵体检状态</h3>
-                <div class="status-items">
-                    <div class="status-item"><span class="status-label">叶片：</span><span class="status-value warning">受损</span></div>
-                    <div class="status-item"><span class="status-label">根系：</span><span class="status-value warning">异常</span></div>
-                    <div class="status-item"><span class="status-label">光合：</span><span class="status-value warning">下降</span></div>
+            <div class="status-panel healing-panel" id="healingPanel">
+                <h3>小葵康复进度</h3>
+                <div class="healing-visual">
+                    <div class="healing-sunflower" id="healingSunflower" role="img" aria-label="小葵康复状态">
+                        <svg class="healing-sunflower-svg" viewBox="0 0 260 320" aria-hidden="true" focusable="false">
+                            <defs>
+                                <radialGradient id="xkFaceGradient" cx="42%" cy="35%" r="68%">
+                                    <stop offset="0%" stop-color="#FFF6D8"/>
+                                    <stop offset="58%" stop-color="#FFE4AA"/>
+                                    <stop offset="100%" stop-color="#F3B968"/>
+                                </radialGradient>
+                                <linearGradient id="xkPetalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFF36A"/>
+                                    <stop offset="42%" stop-color="#FFD43F"/>
+                                    <stop offset="100%" stop-color="#F2A90F"/>
+                                </linearGradient>
+                                <linearGradient id="xkPetalShadow" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FDD84A"/>
+                                    <stop offset="100%" stop-color="#D98B08"/>
+                                </linearGradient>
+                                <linearGradient id="xkLeafGradient" x1="8%" y1="8%" x2="92%" y2="92%">
+                                    <stop offset="0%" stop-color="#9BD86B"/>
+                                    <stop offset="48%" stop-color="#4F9C3D"/>
+                                    <stop offset="100%" stop-color="#1F6B35"/>
+                                </linearGradient>
+                                <linearGradient id="xkStemGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#2C7B35"/>
+                                    <stop offset="45%" stop-color="#6DBB4A"/>
+                                    <stop offset="100%" stop-color="#1F6B35"/>
+                                </linearGradient>
+                                <filter id="xkSoftShadow" x="-30%" y="-30%" width="160%" height="170%">
+                                    <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#2F6B4F" flood-opacity="0.18"/>
+                                </filter>
+                                <filter id="xkPetalTexture" x="-12%" y="-12%" width="124%" height="124%">
+                                    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="8" result="texture"/>
+                                    <feColorMatrix in="texture" type="saturate" values="0" result="monoTexture"/>
+                                    <feComponentTransfer in="monoTexture" result="petalGrain">
+                                        <feFuncA type="table" tableValues="0 0.09"/>
+                                    </feComponentTransfer>
+                                    <feBlend in="SourceGraphic" in2="petalGrain" mode="multiply"/>
+                                </filter>
+                            </defs>
+
+                            <g class="xk-aura">
+                                <circle cx="130" cy="106" r="86"/>
+                                <circle cx="130" cy="106" r="118"/>
+                            </g>
+
+                            <g class="xk-sparkles">
+                                <path d="M38 66l5 12 12 5-12 5-5 12-5-12-12-5 12-5z"/>
+                                <path d="M216 58l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
+                                <circle cx="214" cy="212" r="3.5"/>
+                                <circle cx="46" cy="218" r="3"/>
+                            </g>
+
+                            <g class="xk-plant" filter="url(#xkSoftShadow)">
+                                <g class="xk-stem-group">
+                                    <path class="xk-stem" d="M124 149 C118 187 121 233 116 290 C121 298 139 298 144 290 C138 235 141 187 135 149 Z"/>
+                                    <path class="xk-stem-highlight" d="M130 153 C127 197 128 244 126 288"/>
+                                </g>
+
+                                <g class="xk-leaves">
+                                    <path class="xk-leaf xk-leaf-left" d="M118 222 C82 199 54 205 34 234 C66 249 96 246 121 225 Z"/>
+                                    <path class="xk-leaf-vein" d="M45 233 C73 228 95 224 118 222 M72 225 L58 214 M83 225 L73 209 M94 224 L91 211"/>
+                                    <path class="xk-leaf xk-leaf-right" d="M140 231 C173 203 206 207 228 236 C199 256 164 256 139 234 Z"/>
+                                    <path class="xk-leaf-vein" d="M218 236 C190 229 164 232 140 231 M187 229 L202 217 M174 230 L184 214 M160 231 L161 216"/>
+                                    <path class="xk-leaf xk-leaf-low-left" d="M121 266 C91 253 72 260 58 286 C85 295 108 289 123 270 Z"/>
+                                    <path class="xk-leaf xk-leaf-low-right" d="M139 268 C166 252 190 258 205 282 C181 295 156 290 138 271 Z"/>
+                                </g>
+
+                                <g class="xk-bloom">
+                                    <g class="xk-petal-back">
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(22.5 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(45 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(67.5 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(90 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(112.5 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(135 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(157.5 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(180 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(202.5 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(225 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(247.5 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(270 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(292.5 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(315 130 106)"/>
+                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(337.5 130 106)"/>
+                                    </g>
+                                    <g class="xk-petal-front">
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(11.25 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(33.75 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(56.25 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(78.75 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(101.25 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(123.75 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(146.25 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(168.75 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(191.25 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(213.75 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(236.25 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(258.75 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(281.25 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(303.75 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(326.25 130 106)"/>
+                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(348.75 130 106)"/>
+                                    </g>
+                                    <g class="xk-seed-ring">
+                                        <circle cx="130" cy="106" r="59"/>
+                                        <circle cx="130" cy="106" r="50"/>
+                                    </g>
+                                    <circle class="xk-face" cx="130" cy="106" r="48"/>
+                                    <g class="xk-face-details">
+                                        <path class="xk-brow" d="M91 83 C101 76 111 77 119 84"/>
+                                        <path class="xk-brow" d="M141 84 C149 77 160 76 169 83"/>
+                                        <g class="xk-eye xk-eye-left">
+                                            <ellipse cx="105" cy="104" rx="13" ry="17"/>
+                                            <circle cx="101" cy="98" r="4"/>
+                                            <circle cx="110" cy="111" r="2.5"/>
+                                        </g>
+                                        <g class="xk-eye xk-eye-right">
+                                            <ellipse cx="155" cy="104" rx="13" ry="17"/>
+                                            <circle cx="151" cy="98" r="4"/>
+                                            <circle cx="160" cy="111" r="2.5"/>
+                                        </g>
+                                        <path class="xk-mouth" d="M115 128 C123 141 139 141 146 128 C137 133 125 133 115 128 Z"/>
+                                        <ellipse class="xk-blush xk-blush-left" cx="91" cy="125" rx="10" ry="6"/>
+                                        <ellipse class="xk-blush xk-blush-right" cx="169" cy="125" rx="10" ry="6"/>
+                                        <path class="xk-tired-mouth" d="M116 134 C124 128 137 128 145 134"/>
+                                        <path class="xk-tired-mark" d="M83 121 l-5 6 M91 124 l-4 5 M177 121 l5 6 M169 124 l4 5"/>
+                                    </g>
+                                </g>
+                            </g>
+
+                            <g class="xk-soil">
+                                <ellipse cx="130" cy="296" rx="72" ry="13"/>
+                                <circle cx="92" cy="291" r="4"/>
+                                <circle cx="107" cy="298" r="3"/>
+                                <circle cx="164" cy="292" r="4"/>
+                                <circle cx="181" cy="298" r="3"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="healing-ring" id="healingRing" role="progressbar" aria-label="小葵康复进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <span class="healing-percent" id="healingPercent">0%</span>
+                    </div>
+                </div>
+                <div class="status-items healing-status">
+                    <div class="status-item"><span class="status-label">叶片：</span><span class="status-value" data-status="leaf" id="leafStatus">受损</span></div>
+                    <div class="status-item"><span class="status-label">根系：</span><span class="status-value" data-status="root" id="rootStatus">异常</span></div>
+                    <div class="status-item"><span class="status-label">光合：</span><span class="status-value" data-status="photo" id="photoStatus">下降</span></div>
                     <div class="status-item"><span class="status-label">当前展区：</span><span class="status-value">个人行动</span></div>
+                </div>
+                <div class="healing-message" id="healingMessage">
+                    选择你的行动，帮助小葵恢复健康...
                 </div>
             </div>
 
             <section class="action-section">
                 <h2>选择你的环保行动</h2>
-                <form class="action-form" id="actionForm">
+                <form class="action-form healing-form" id="actionForm">
                     <div class="action-options">
-                        <label class="action-option">
+                        <label class="action-option" data-heal="leaf">
                             <input type="checkbox" name="action" value="少用一次性塑料制品">
                             <span class="checkmark"></span>
                             <span class="action-text">少用一次性塑料制品</span>
+                            <span class="heal-tag">改善土壤</span>
                         </label>
-                        <label class="action-option">
+                        <label class="action-option" data-heal="root">
                             <input type="checkbox" name="action" value="节约用水">
                             <span class="checkmark"></span>
                             <span class="action-text">节约用水</span>
+                            <span class="heal-tag">保护水源</span>
                         </label>
-                        <label class="action-option">
+                        <label class="action-option" data-heal="leaf">
                             <input type="checkbox" name="action" value="垃圾分类">
                             <span class="checkmark"></span>
                             <span class="action-text">垃圾分类</span>
+                            <span class="heal-tag">改善土壤</span>
                         </label>
-                        <label class="action-option">
+                        <label class="action-option" data-heal="photo">
                             <input type="checkbox" name="action" value="低碳出行">
                             <span class="checkmark"></span>
                             <span class="action-text">低碳出行</span>
+                            <span class="heal-tag">净化空气</span>
                         </label>
-                        <label class="action-option">
+                        <label class="action-option" data-heal="root">
                             <input type="checkbox" name="action" value="不随意倾倒废液">
                             <span class="checkmark"></span>
                             <span class="action-text">不随意倾倒废液</span>
+                            <span class="heal-tag">保护水源</span>
                         </label>
-                        <label class="action-option">
+                        <label class="action-option" data-heal="photo">
                             <input type="checkbox" name="action" value="参与校园绿植养护">
                             <span class="checkmark"></span>
                             <span class="action-text">参与校园绿植养护</span>
+                            <span class="heal-tag">净化空气</span>
                         </label>
                     </div>
                     <button type="submit" class="generate-btn">生成我的绿色行动卡</button>
