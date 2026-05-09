@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>根系损伤 - 看不见的地下危机</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">小葵的体检报告</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="pollution-record.html" class="nav-link">污染环境记录</a></li>
+                <li><a href="plant-damage.html" class="nav-link active">植物伤害观察</a></li>
+                <li><a href="repair.html" class="nav-link">生态修复建议</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">首页</a> > <a href="plant-damage.html">植物伤害观察</a> > <span>根系损伤</span>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="detail-header">
+                <h1>根系损伤：看不见的地下危机</h1>
+                <p>根系深埋地下，是植物吸收水分和养分的重要器官。当土壤和水体受到污染，根系往往首当其冲。</p>
+            </section>
+
+            <div class="status-panel">
+                <h3>小葵体检状态</h3>
+                <div class="status-items">
+                    <div class="status-item"><span class="status-label">叶片：</span><span class="status-value warning">受损</span></div>
+                    <div class="status-item"><span class="status-label">根系：</span><span class="status-value danger">严重异常</span></div>
+                    <div class="status-item"><span class="status-label">光合：</span><span class="status-value warning">下降</span></div>
+                    <div class="status-item"><span class="status-label">当前展区：</span><span class="status-value">根系损伤观察</span></div>
+                </div>
+            </div>
+
+            <section class="root-comparison">
+                <h2>根系状态对比</h2>
+                <div class="root-compare-grid">
+                    <div class="root-state">
+                        <h3>正常根系</h3>
+                        <div class="root-visual">
+                            <img src="assets/images/root-healthy.png" alt="健康根系" class="comparison-image">
+                        </div>
+                        <ul class="root-features">
+                            <li>颜色较浅（白色或浅黄色）</li>
+                            <li>分支较多</li>
+                            <li>根尖完整</li>
+                            <li>吸收能力强</li>
+                        </ul>
+                    </div>
+                    <div class="root-state">
+                        <h3>受损根系</h3>
+                        <div class="root-visual">
+                            <img src="assets/images/root-damaged.png" alt="受损根系" class="comparison-image">
+                        </div>
+                        <ul class="root-features">
+                            <li>颜色发黑</li>
+                            <li>变短、分支减少</li>
+                            <li>部分腐烂</li>
+                            <li>吸收能力下降</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="underground-view">
+                <h2>地下透视图</h2>
+                <p class="section-hint">点击观察点，了解根系各部位受损情况</p>
+                <div class="underground-diagram">
+                    <div class="underground-image-container">
+                        <div class="underground-image-wrapper">
+                            <img src="assets/images/underground-diagram.png" alt="地下透视图" class="underground-image">
+                            <button class="root-point" data-point="tip" aria-label="根尖观察点">1</button>
+                            <button class="root-point" data-point="lateral" aria-label="侧根观察点">2</button>
+                            <button class="root-point" data-point="dark" aria-label="发黑区域观察点">3</button>
+                            <button class="root-point" data-point="soil" aria-label="土壤污染点观察点">4</button>
+                        </div>
+                    </div>
+                    <div class="root-info-panel" id="rootInfoPanel">
+                        <div class="root-info-default">
+                            <h3>根系观察</h3>
+                            <p>点击地下观察点，了解根系各部位的受损情况</p>
+                        </div>
+                        <div class="root-info-detail" data-for="tip" hidden>
+                            <h3>根尖</h3>
+                            <p>根尖是根系生长和吸收最活跃的部位。受污染后，根尖细胞坏死，根系无法正常向下生长。</p>
+                        </div>
+                        <div class="root-info-detail" data-for="lateral" hidden>
+                            <h3>侧根</h3>
+                            <p>侧根增加根系吸收面积。污染导致侧根数量减少，分支稀疏，吸收能力下降。</p>
+                        </div>
+                        <div class="root-info-detail" data-for="dark" hidden>
+                            <h3>发黑区域</h3>
+                            <p>根系发黑是污染的典型症状，表明根系组织已经受到有毒物质侵害，部分细胞坏死。</p>
+                        </div>
+                        <div class="root-info-detail" data-for="soil" hidden>
+                            <h3>土壤污染点</h3>
+                            <p>土壤中的重金属和化学物质通过根毛进入根系，长期积累导致根系功能受损。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="root-impact">
+                <h2>根系受损的影响</h2>
+                <div class="impact-chain">
+                    <div class="impact-step">
+                        <div class="impact-icon">&#128167;</div>
+                        <h3>吸水下降</h3>
+                        <p>根系吸收水分能力降低</p>
+                    </div>
+                    <div class="impact-arrow">&rarr;</div>
+                    <div class="impact-step">
+                        <div class="impact-icon">&#127807;</div>
+                        <h3>养分不足</h3>
+                        <p>矿物质吸收受阻</p>
+                    </div>
+                    <div class="impact-arrow">&rarr;</div>
+                    <div class="impact-step">
+                        <div class="impact-icon">&#128200;</div>
+                        <h3>生长缓慢</h3>
+                        <p>植株发育迟缓</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>小葵的污染体检报告｜高污染环境对植物危害科普网站</p>
+        <p class="footer-note">本网站为课程作业展示项目</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

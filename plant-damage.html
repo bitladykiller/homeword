@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植物伤害观察 - 第二展区</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">小葵的体检报告</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="pollution-record.html" class="nav-link">污染环境记录</a></li>
+                <li><a href="plant-damage.html" class="nav-link active">植物伤害观察</a></li>
+                <li><a href="repair.html" class="nav-link">生态修复建议</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">首页</a> > <span>植物伤害观察</span>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="zone-header">
+                <h1 class="zone-title">第二展区：植物伤害观察</h1>
+                <p class="zone-intro">欢迎来到小葵的体检室。污染已经在小葵身上留下了痕迹，让我们仔细观察它的受伤部位。</p>
+            </section>
+
+            <div class="exam-room">
+                <div class="sunflower-exam" aria-label="向日葵体检示意图">
+                    <img src="assets/images/exam-sunflower.png" alt="向日葵体检角色" class="exam-sunflower-image">
+                    <div class="exam-buttons">
+                        <a href="leaf.html" class="exam-btn leaf-btn" data-target="leaf">叶片</a>
+                        <a href="root.html" class="exam-btn root-btn" data-target="root">根系</a>
+                        <a href="photosynthesis.html" class="exam-btn photo-btn" data-target="photo">光合作用</a>
+                    </div>
+                </div>
+
+                <div class="exam-report" id="examReport">
+                    <h3>小葵体检报告</h3>
+                    <div class="report-items">
+                        <div class="report-item" data-item="leaf">
+                            <span class="report-label">叶片颜色：</span>
+                            <span class="report-value warning">偏黄</span>
+                        </div>
+                        <div class="report-item" data-item="leaf">
+                            <span class="report-label">叶片表面：</span>
+                            <span class="report-value warning">有斑点</span>
+                        </div>
+                        <div class="report-item" data-item="root">
+                            <span class="report-label">根系状态：</span>
+                            <span class="report-value warning">部分发黑</span>
+                        </div>
+                        <div class="report-item" data-item="photo">
+                            <span class="report-label">光合能量：</span>
+                            <span class="report-value warning">下降</span>
+                        </div>
+                        <div class="report-item summary">
+                            <span class="report-label">综合判断：</span>
+                            <span class="report-value">污染压力下的生长受损</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="damage-overview">
+                <h2>伤害部位概览</h2>
+                <div class="overview-cards">
+                    <a href="leaf.html" class="overview-card">
+                        <div class="overview-icon">&#127807;</div>
+                        <h3>叶片损伤</h3>
+                        <p>最容易被看见的污染信号</p>
+                        <span class="overview-link">查看详情 &rarr;</span>
+                    </a>
+                    <a href="root.html" class="overview-card">
+                        <div class="overview-icon">&#127793;</div>
+                        <h3>根系损伤</h3>
+                        <p>看不见的地下危机</p>
+                        <span class="overview-link">查看详情 &rarr;</span>
+                    </a>
+                    <a href="photosynthesis.html" class="overview-card">
+                        <div class="overview-icon">&#9728;&#65039;</div>
+                        <h3>光合作用受损</h3>
+                        <p>小葵为什么长不大</p>
+                        <span class="overview-link">查看详情 &rarr;</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>小葵的污染体检报告｜高污染环境对植物危害科普网站</p>
+        <p class="footer-note">本网站为课程作业展示项目</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

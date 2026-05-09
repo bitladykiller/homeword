@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>叶片损伤 - 最容易被看见的污染信号</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">小葵的体检报告</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="pollution-record.html" class="nav-link">污染环境记录</a></li>
+                <li><a href="plant-damage.html" class="nav-link active">植物伤害观察</a></li>
+                <li><a href="repair.html" class="nav-link">生态修复建议</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">首页</a> > <a href="plant-damage.html">植物伤害观察</a> > <span>叶片损伤</span>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="detail-header">
+                <h1>叶片损伤：最容易被看见的污染信号</h1>
+                <p class="section-lead">叶片是植物与外界环境接触最直接的器官，也是<span class="text-highlight">污染伤害最直观的"记录纸"</span>。当空气中的有害气体侵袭、水体中的毒素渗透、土壤中的重金属累积——叶片总是第一个发出警报。读懂叶片上的信号，就是读懂环境发出的求救信。</p>
+            </section>
+
+            <div class="status-panel">
+                <h3>小葵体检状态</h3>
+                <div class="status-items">
+                    <div class="status-item"><span class="status-label">叶片：</span><span class="status-value danger">严重受损</span></div>
+                    <div class="status-item"><span class="status-label">根系：</span><span class="status-value warning">异常</span></div>
+                    <div class="status-item"><span class="status-label">光合：</span><span class="status-value warning">下降</span></div>
+                    <div class="status-item"><span class="status-label">当前展区：</span><span class="status-value">叶片损伤观察</span></div>
+                </div>
+            </div>
+
+            <section class="leaf-comparison">
+                <h2>叶片状态对比</h2>
+                <div class="comparison-controls">
+                    <button class="compare-btn active" data-state="healthy">健康状态</button>
+                    <button class="compare-btn" data-state="polluted">污染状态</button>
+                </div>
+                <div class="comparison-display">
+                    <div class="leaf-display" id="leafDisplay">
+                        <div class="leaf-visual healthy-state">
+                            <img src="assets/images/leaf-healthy.png" alt="健康叶片" class="comparison-image" id="leafImage">
+                        </div>
+                        <div class="leaf-description">
+                            <h3 id="leafTitle">健康叶片</h3>
+                            <p id="leafDesc">叶片翠绿，叶脉清晰，表面光滑，没有斑点或损伤。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="symptom-table">
+                <h2>症状对照表</h2>
+                <div class="symptom-cards">
+                    <div class="symptom-card">
+                        <img src="assets/images/symptom-yellowing.png" alt="叶片发黄" class="symptom-image">
+                        <h3>叶片发黄</h3>
+                        <p><strong>原因：</strong>叶绿素合成受阻，营养吸收通道被干扰——<span class="text-emphasis">叶片正在失去制造养分的"工厂"</span>。SO₂抑制5-氨基乙酰丙酸脱水酶（ALAD）活性，阻断叶绿素合成途径；同时激活叶绿素酶，加速已有叶绿素降解。缺镁、缺铁也会导致黄化——重金属污染正是通过竞争性抑制铁、镁吸收间接引发失绿。</p>
+                        <p class="symptom-note">急性症状：SO₂浓度>0.5 ppm暴露4小时，叶绿素下降15-25%；慢性症状：长期低浓度暴露导致渐进性黄化</p>
+                    </div>
+                    <div class="symptom-card">
+                        <img src="assets/images/symptom-scorch.png" alt="叶缘焦枯" class="symptom-image">
+                        <h3>叶缘焦枯</h3>
+                        <p><strong>原因：</strong>臭氧侵蚀与酸性沉降刺激——<span class="text-emphasis">叶缘细胞正在被"灼伤"</span>。O₃通过气孔进入后，在叶肉细胞间隙中浓度最高的区域恰是叶缘和叶尖——这些部位气孔密度最大、气体交换最活跃，因此损伤也最集中。活性氧攻击细胞膜引发膜脂过氧化，细胞失水干枯，呈现褐色焦枯状。</p>
+                        <p class="symptom-note">O₃浓度40-60 ppb即可出现叶缘焦枯；敏感植物如菜豆、菠菜在30 ppb下即有可见伤害</p>
+                    </div>
+                    <div class="symptom-card">
+                        <img src="assets/images/symptom-spots.png" alt="叶面斑点" class="symptom-image">
+                        <h3>叶面斑点</h3>
+                        <p><strong>原因：</strong>臭氧等强氧化性污染物侵入——<span class="text-emphasis">叶面正在被"蚀刻"出坏死斑</span>。斑点是细胞死亡（坏死）的直接证据：O₃诱导的活性氧突破抗氧化防线后，叶肉细胞发生程序性死亡（PCD），死亡区域脱水收缩形成肉眼可见的褐色或黑色斑点。斑点大小与O₃暴露剂量正相关——急性暴露产生大片不规则坏死斑，慢性暴露产生细小密集的斑点。</p>
+                        <p class="symptom-note">坏死斑是空气污染的"指纹"——不同污染物产生不同形态的斑点，可用于污染源鉴定</p>
+                    </div>
+                    <div class="symptom-card">
+                        <img src="assets/images/symptom-curl.png" alt="叶片卷曲" class="symptom-image">
+                        <h3>叶片卷曲</h3>
+                        <p><strong>原因：</strong>根系受损导致水分供应不足——<span class="text-emphasis">叶片正在因"干渴"而蜷缩</span>。当根系吸水能力下降，叶片膨压降低，细胞失去膨胀力。叶片上下表皮细胞膨压变化不均匀时，叶片向膨压低的一侧弯曲卷曲。此外，重金属干扰生长素极性运输，导致叶片两侧生长速率不均，也会引发卷曲。卷曲进一步减少受光面积，<span class="text-alert">光合作用雪上加霜</span>。</p>
+                        <p class="symptom-note">卷曲常与萎蔫相伴出现，是根系功能严重受损的信号——意味着整株植物的水分平衡已经崩溃</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>小葵的污染体检报告｜高污染环境对植物危害科普网站</p>
+        <p class="footer-note">本网站为课程作业展示项目</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

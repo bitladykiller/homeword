@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人行动 - 让小葵重新拥有健康环境</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">小葵的体检报告</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="pollution-record.html" class="nav-link">污染环境记录</a></li>
+                <li><a href="plant-damage.html" class="nav-link">植物伤害观察</a></li>
+                <li><a href="repair.html" class="nav-link active">生态修复建议</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">首页</a> > <a href="repair.html">生态修复建议</a> > <span>个人行动</span>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="detail-header">
+                <h1>个人行动：让小葵重新拥有健康环境</h1>
+                <p>保护植物并不只是大型治理工程，每个人的日常选择也会影响环境。选择你愿意采取的行动，生成你的绿色行动卡。</p>
+            </section>
+
+            <div class="status-panel">
+                <h3>小葵体检状态</h3>
+                <div class="status-items">
+                    <div class="status-item"><span class="status-label">叶片：</span><span class="status-value warning">受损</span></div>
+                    <div class="status-item"><span class="status-label">根系：</span><span class="status-value warning">异常</span></div>
+                    <div class="status-item"><span class="status-label">光合：</span><span class="status-value warning">下降</span></div>
+                    <div class="status-item"><span class="status-label">当前展区：</span><span class="status-value">个人行动</span></div>
+                </div>
+            </div>
+
+            <section class="action-section">
+                <h2>选择你的环保行动</h2>
+                <form class="action-form" id="actionForm">
+                    <div class="action-options">
+                        <label class="action-option">
+                            <input type="checkbox" name="action" value="少用一次性塑料制品">
+                            <span class="checkmark"></span>
+                            <span class="action-text">少用一次性塑料制品</span>
+                        </label>
+                        <label class="action-option">
+                            <input type="checkbox" name="action" value="节约用水">
+                            <span class="checkmark"></span>
+                            <span class="action-text">节约用水</span>
+                        </label>
+                        <label class="action-option">
+                            <input type="checkbox" name="action" value="垃圾分类">
+                            <span class="checkmark"></span>
+                            <span class="action-text">垃圾分类</span>
+                        </label>
+                        <label class="action-option">
+                            <input type="checkbox" name="action" value="低碳出行">
+                            <span class="checkmark"></span>
+                            <span class="action-text">低碳出行</span>
+                        </label>
+                        <label class="action-option">
+                            <input type="checkbox" name="action" value="不随意倾倒废液">
+                            <span class="checkmark"></span>
+                            <span class="action-text">不随意倾倒废液</span>
+                        </label>
+                        <label class="action-option">
+                            <input type="checkbox" name="action" value="参与校园绿植养护">
+                            <span class="checkmark"></span>
+                            <span class="action-text">参与校园绿植养护</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="generate-btn">生成我的绿色行动卡</button>
+                </form>
+
+                <div class="action-card-result" id="actionCardResult" hidden>
+                    <div class="action-card">
+                        <div class="card-header">
+                            <img src="assets/images/xiaokui-avatar.png" alt="小葵头像" class="card-avatar">
+                            <h3>我的绿色行动卡</h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-intro">我愿意从今天开始：</p>
+                            <ul class="card-actions" id="cardActions"></ul>
+                        </div>
+                        <div class="card-footer">
+                            <p>和小葵一起，守护绿色家园</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-hint" id="actionHint" hidden>
+                    <p>请至少选择一项行动</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>小葵的污染体检报告｜高污染环境对植物危害科普网站</p>
+        <p class="footer-note">本网站为课程作业展示项目</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>土壤污染观察 - 植物生命基础被破坏</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">小葵的体检报告</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="pollution-record.html" class="nav-link active">污染环境记录</a></li>
+                <li><a href="plant-damage.html" class="nav-link">植物伤害观察</a></li>
+                <li><a href="repair.html" class="nav-link">生态修复建议</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">首页</a> > <a href="pollution-record.html">污染环境记录</a> > <span>土壤污染观察</span>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="detail-header">
+                <h1>土壤污染观察：植物生命基础被破坏</h1>
+                <p>工业固废、农药残留、重金属、塑料微粒——这些污染物破坏土壤结构，影响植物赖以生存的基础。</p>
+            </section>
+
+            <div class="status-panel">
+                <h3>小葵体检状态</h3>
+                <div class="status-items">
+                    <div class="status-item"><span class="status-label">叶片：</span><span class="status-value warning">受损</span></div>
+                    <div class="status-item"><span class="status-label">根系：</span><span class="status-value warning">异常</span></div>
+                    <div class="status-item"><span class="status-label">光合：</span><span class="status-value warning">下降</span></div>
+                    <div class="status-item"><span class="status-label">当前展区：</span><span class="status-value">土壤污染观察</span></div>
+                </div>
+            </div>
+
+            <section class="soil-profile-section">
+                <h2>土壤剖面观察</h2>
+                <p class="section-hint">点击不同土层，了解污染分布情况</p>
+                <div class="soil-diagram-container">
+                    <img src="assets/images/soil-layers-diagram.png" alt="土壤剖面示意图" class="soil-diagram">
+                </div>
+                <div class="soil-profile">
+                    <div class="soil-layer-item" data-layer="surface">
+                        <div class="layer-color surface-color"></div>
+                        <div class="layer-info">
+                            <h3>表层（0-10cm）</h3>
+                            <p class="layer-default">落叶与灰尘</p>
+                            <p class="layer-detail" hidden>地表积累的落叶、灰尘和部分沉降的颗粒物，是污染物进入土壤的第一站。PM2.5中的重金属（Pb、Cd、Cr）随大气沉降进入表层，农药喷施后也首先残留于此。表层有机质含量最高，污染物易与有机质结合形成络合物，降低其迁移性但也增加了长期残留风险。</p>
+                        </div>
+                    </div>
+                    <div class="soil-layer-item" data-layer="root">
+                        <div class="layer-color root-color"></div>
+                        <div class="layer-info">
+                            <h3>根系层（10-30cm）</h3>
+                            <p class="layer-default">根系发黑、分支减少</p>
+                            <p class="layer-detail" hidden>植物根系主要分布层，受污染后根系发黑、腐烂，分支减少，吸收能力大幅下降。镉（Cd）在此层浓度通常最高，因为它易被土壤黏粒和有机质吸附。当土壤pH低于5.5时，镉的活性急剧升高，更易被根系吸收。根系受损面积超过30%时，植物几乎无法正常生长。</p>
+                        </div>
+                    </div>
+                    <div class="soil-layer-item" data-layer="pollution">
+                        <div class="layer-color pollution-color"></div>
+                        <div class="layer-info">
+                            <h3>污染层（30-50cm）</h3>
+                            <p class="layer-default">重金属、农药残留</p>
+                            <p class="layer-detail" hidden>重金属和农药残留的主要积累层。铅（Pb）在土壤中迁移极慢，主要积累在0-30cm表层，半衰期可达数百至上千年。砷（As）在还原条件下以亚砷酸盐形式存在，溶解度更高，可迁移至更深层。有机氯农药虽已禁用多年，在此层仍可检出，DDT半衰期约2-15年。</p>
+                        </div>
+                    </div>
+                    <div class="soil-layer-item" data-layer="groundwater">
+                        <div class="layer-color groundwater-color"></div>
+                        <div class="layer-info">
+                            <h3>地下水层（50cm以下）</h3>
+                            <p class="layer-default">可能被污染物影响</p>
+                            <p class="layer-detail" hidden>深层土壤和地下水可能被上层渗透的污染物影响，形成长期的污染隐患。硝酸盐和六价铬（Cr⁶⁺）溶解度高，最易穿透土层污染地下水。一旦地下水被污染，修复难度极大——地下水中的污染物可能需要数十年甚至上百年才能自然稀释，且会随地下水流扩散至更大范围。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="plant-symptoms">
+                <h2>植物受害表现</h2>
+                <div class="symptom-list">
+                    <div class="symptom-item">
+                        <div class="symptom-marker"></div>
+                        <div class="symptom-content">
+                            <h3>发芽率下降</h3>
+                            <p>土壤中的有毒物质<span class="text-alert">直接抑制种子萌发</span>——新生命的起点便被扼杀。重金属离子干扰种子中α-淀粉酶的活性，阻碍淀粉向可溶性糖的转化，胚芽无法获得萌发所需的能量。镉浓度超过5 mg/kg时，小麦发芽率可下降<span class="text-alert">30-50%</span>；铅浓度100 mg/kg时，水稻发芽率降低约40%。</p>
+                        </div>
+                    </div>
+                    <div class="symptom-item">
+                        <div class="symptom-marker"></div>
+                        <div class="symptom-content">
+                            <h3>根系短小</h3>
+                            <p>根系<span class="text-emphasis">被毒素逼退</span>，无法向下扎根、向外扩展——浅薄而脆弱。根尖分生区是根系生长的"引擎"，重金属在此积累后抑制细胞有丝分裂，<span class="text-emphasis">根尖伸长区细胞无法正常伸长</span>，导致根系整体变短。侧根原基的分化也受到抑制，分支数量锐减，吸收面积大幅缩减。</p>
+                        </div>
+                    </div>
+                    <div class="symptom-item">
+                        <div class="symptom-marker"></div>
+                        <div class="symptom-content">
+                            <h3>生长矮化</h3>
+                            <p>养分断绝、毒素累积，<span class="text-emphasis">整株矮化萎缩</span>——与同龄健康植株相比，差距触目惊心。重金属干扰生长素（IAA）的合成与极性运输，细胞伸长受阻；同时抑制赤霉素信号通路，节间缩短。受镉污染的向日葵株高可降低<span class="text-alert">25-45%</span>，花盘直径缩小30%以上，种子产量几乎归零。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="science-detail" style="margin-top: 32px;">
+                    <h2>土壤污染物伤害机制详解</h2>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 12px;">重金属：土壤中的隐形炸弹</h3>
+                        <p><strong>伤害原理：</strong>土壤中的重金属（Cd、Pb、Hg、As、Cr等）不能被微生物降解，<span class="text-emphasis">一旦进入土壤便长期残留</span>。它们通过根系吸收进入植物体内，与蛋白质巯基结合导致酶失活，诱导活性氧（ROS）爆发，引发膜脂过氧化和DNA损伤。不同重金属的毒害机制各有侧重：镉（Cd）主要干扰锌的代谢和钙信号传导；铅（Pb）破坏细胞壁结构和微管骨架；汞（Hg）直接与巯基酶结合使其失活。</p>
+                        <p><strong>关键数据：</strong>中国土壤环境质量标准规定，农用地土壤镉风险筛选值为<span class="text-alert">0.3-0.6 mg/kg</span>（依pH值而定），铅为<span class="text-alert">70-120 mg/kg</span>，汞为<span class="text-alert">0.5-1.0 mg/kg</span>。全国土壤污染状况调查公报显示，耕地土壤超标率达<span class="text-highlight">19.4%</span>，其中镉超标率最高，达7.0%。</p>
+                    </div>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 12px;">农药残留：慢性毒害的积累</h3>
+                        <p><strong>伤害原理：</strong>农药在土壤中的残留期远超预期。有机氯农药（如六六六、DDT）虽已于1983年起在中国禁用，但因其半衰期长达数年至数十年，<span class="text-emphasis">至今仍可在部分土壤中检出</span>。有机磷农药虽降解较快，但其代谢产物可能具有更强的毒性。农药残留干扰植物体内激素平衡，影响花粉管伸长和受精过程，导致结实率下降。</p>
+                        <p><strong>关键数据：</strong>草甘膦在土壤中的半衰期为<span class="text-alert">2-215天</span>（因土壤类型而异），其代谢产物AMPA半衰期更长。长期使用草甘膦可使土壤微生物量碳降低<span class="text-highlight">20-30%</span>，影响土壤生态功能。中国每年农药使用量约<span class="text-highlight">180万吨</span>，利用率仅约35-40%，大量残留进入土壤。</p>
+                    </div>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 12px;">微塑料：新兴的土壤威胁</h3>
+                        <p><strong>伤害原理：</strong>地膜残留、污泥农用和有机肥施用使大量微塑料进入土壤。微塑料可<span class="text-emphasis">改变土壤物理结构</span>，影响土壤团聚体稳定性和持水能力。更危险的是，微塑料表面吸附重金属和有机污染物，形成"复合污染载体"，被根系吸收后同时释放多种有毒物质。纳米级塑料颗粒甚至可穿透细胞壁进入细胞内部。</p>
+                        <p><strong>关键数据：</strong>中国农田土壤中微塑料丰度可达<span class="text-alert">数千至数万粒/kg</span>，设施农业土壤中因大量使用地膜，微塑料含量更高。研究表明，微塑料可使土壤持水量降低<span class="text-highlight">10-25%</span>，蚯蚓存活率下降30-50%，严重破坏土壤生态系统。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>小葵的污染体检报告｜高污染环境对植物危害科普网站</p>
+        <p class="footer-note">本网站为课程作业展示项目</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

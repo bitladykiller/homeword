@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>水体污染观察 - 根系吸收了什么</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">小葵的体检报告</a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">首页</a></li>
+                <li><a href="pollution-record.html" class="nav-link active">污染环境记录</a></li>
+                <li><a href="plant-damage.html" class="nav-link">植物伤害观察</a></li>
+                <li><a href="repair.html" class="nav-link">生态修复建议</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">首页</a> > <a href="pollution-record.html">污染环境记录</a> > <span>水体污染观察</span>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="detail-header">
+                <h1>水体污染观察：根系吸收了什么？</h1>
+                <p>工业废水、生活污水、农业化肥流失——这些污染物通过灌溉和土壤渗透，最终进入植物根系。</p>
+            </section>
+
+            <div class="status-panel">
+                <h3>小葵体检状态</h3>
+                <div class="status-items">
+                    <div class="status-item"><span class="status-label">叶片：</span><span class="status-value warning">受损</span></div>
+                    <div class="status-item"><span class="status-label">根系：</span><span class="status-value warning">异常</span></div>
+                    <div class="status-item"><span class="status-label">光合：</span><span class="status-value warning">下降</span></div>
+                    <div class="status-item"><span class="status-label">当前展区：</span><span class="status-value">水体污染观察</span></div>
+                </div>
+            </div>
+
+            <section class="pollution-path">
+                <h2>污染路径</h2>
+                <div class="path-diagram-container">
+                    <img src="assets/images/water-path-diagram.png" alt="污染路径流程图" class="path-diagram">
+                </div>
+                <div class="path-steps">
+                    <button class="path-step" data-step="1">
+                        <div class="step-number">1</div>
+                        <h3>污染河水</h3>
+                    </button>
+                    <div class="path-arrow">&rarr;</div>
+                    <button class="path-step" data-step="2">
+                        <div class="step-number">2</div>
+                        <h3>进入灌溉系统</h3>
+                    </button>
+                    <div class="path-arrow">&rarr;</div>
+                    <button class="path-step" data-step="3">
+                        <div class="step-number">3</div>
+                        <h3>渗入土壤</h3>
+                    </button>
+                    <div class="path-arrow">&rarr;</div>
+                    <button class="path-step" data-step="4">
+                        <div class="step-number">4</div>
+                        <h3>根系吸收</h3>
+                    </button>
+                    <div class="path-arrow">&rarr;</div>
+                    <button class="path-step" data-step="5">
+                        <div class="step-number">5</div>
+                        <h3>植物生长受阻</h3>
+                    </button>
+                </div>
+                <div class="path-detail" id="pathDetail">
+                    <p class="default-text">点击上方步骤，查看污染如何一步步影响植物生长</p>
+                </div>
+            </section>
+
+            <section class="damage-info">
+                <h2>植物受害表现</h2>
+                <div class="damage-grid">
+                    <div class="damage-item">
+                        <div class="damage-icon">&#127793;</div>
+                        <h3>根系腐烂</h3>
+                        <p>有毒物质在根系中持续积累，<span class="text-alert">细胞坏死、组织腐烂</span>——根系正在从内部瓦解。重金属离子（如镉、铅）通过根毛细胞壁的孔道进入根系，与细胞膜上的巯基（-SH）结合，<span class="text-emphasis">使膜蛋白变性、膜透性增大</span>，细胞内容物外渗，最终导致组织坏死变黑。</p>
+                    </div>
+                    <div class="damage-item">
+                        <div class="damage-icon">&#127807;</div>
+                        <h3>叶片下垂</h3>
+                        <p>根系吸水能力骤降，叶片<span class="text-emphasis">因"干渴"而无力下垂</span>，失去了原本挺拔的姿态。正常植物依靠根系产生的根压和蒸腾拉力维持水分运输，当根系受损面积超过<span class="text-alert">30%</span>时，蒸腾流中断，气孔被迫关闭以减少失水，但这也意味着CO₂无法进入——光合作用随之骤降。</p>
+                    </div>
+                    <div class="damage-item">
+                        <div class="damage-icon">&#128200;</div>
+                        <h3>生长缓慢</h3>
+                        <p>矿物质与养分供应断绝，<span class="text-emphasis">整株植物的生长陷入停滞</span>——矮小、瘦弱、无法开花。氮、磷、钾等必需元素的吸收受阻，细胞分裂素合成减少，细胞伸长受抑制。研究显示，受镉污染的水稻株高可降低<span class="text-alert">20-40%</span>，生物量减少30-50%。</p>
+                    </div>
+                </div>
+
+                <div class="science-detail" style="margin-top: 32px;">
+                    <h2>水体污染物伤害机制详解</h2>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 12px;">重金属：根系的无形杀手</h3>
+                        <p><strong>伤害原理：</strong>水体中的重金属（Cd、Pb、Hg、Cr等）通过根系吸收进入植物体内。镉（Cd）是最具毒性的重金属之一，它与锌（Zn）化学性质相似，通过锌转运蛋白"骗过"根系进入植物体内。进入细胞后，镉离子与蛋白质巯基结合，<span class="text-emphasis">导致多种酶失活</span>，同时诱导产生大量活性氧（ROS），引发膜脂过氧化。</p>
+                        <p><strong>关键数据：</strong>土壤镉含量超过<span class="text-alert">0.3 mg/kg</span>（中国土壤环境质量标准风险筛选值）即对敏感植物产生毒害；水培条件下，1-10 μM Cd²⁺即可显著抑制根系伸长。铅（Pb）在植物组织中超过<span class="text-alert">10-30 mg/kg</span>即出现毒害症状。中国约<span class="text-highlight">16.1%</span>的耕地土壤受到不同程度的重金属污染。</p>
+                        <p><strong>伤害链：</strong>重金属进入根毛 → 竞争性抑制必需元素吸收 → 巯基酶失活 → 活性氧爆发 → 膜脂过氧化 → 根尖分生区细胞死亡 → 根系变短变黑</p>
+                    </div>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 12px;">富营养化：窒息的水体</h3>
+                        <p><strong>伤害原理：</strong>农业面源污染导致大量氮磷进入水体，引发富营养化。藻类过度繁殖形成"水华"，覆盖水面阻挡阳光，<span class="text-emphasis">沉水植物因光照不足而死亡</span>。更严重的是，藻类夜间呼吸和死亡分解消耗大量溶解氧，导致水体缺氧甚至厌氧，水生植物根系在缺氧环境中进行无氧呼吸，积累乙醇等有毒代谢产物。</p>
+                        <p><strong>关键数据：</strong>当水体总氮超过<span class="text-alert">0.2 mg/L</span>、总磷超过<span class="text-alert">0.02 mg/L</span>时即可发生富营养化。中国湖泊富营养化比例高达<span class="text-highlight">70%以上</span>，太湖、滇池等大型湖泊长期受此困扰。富营养化水体中溶解氧可降至2 mg/L以下（正常值应>5 mg/L），水生植物根系几乎无法存活。</p>
+                    </div>
+                    
+                    <div class="info-box" style="margin-top: 20px;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 12px;">持久性有机污染物：隐形的化学入侵</h3>
+                        <p><strong>伤害原理：</strong>农药、工业废水中的持久性有机污染物（POPs）具有<span class="text-emphasis">难降解、生物蓄积</span>的特性。有机氯农药（如DDT）虽已被禁用多年，但在土壤和水体中仍可检出。这些物质通过根系进入植物后，干扰植物激素平衡，抑制细胞分裂，影响花器官发育。</p>
+                        <p><strong>关键数据：</strong>POPs在环境中的半衰期可达<span class="text-alert">数年至数十年</span>，DDT在土壤中的半衰期约2-15年。它们通过食物链逐级放大，浓度可放大<span class="text-highlight">10万倍以上</span>（生物放大效应）。即使是极低浓度（μg/L级），长期暴露也可导致植物生殖能力下降。</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>小葵的污染体检报告｜高污染环境对植物危害科普网站</p>
+        <p class="footer-note">本网站为课程作业展示项目</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
