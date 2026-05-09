@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.bak
+package*.json
+assets/images/image-prompts.md
+assets/images/image-prompts-new.md
+assets/images/README.md
