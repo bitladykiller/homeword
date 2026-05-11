@@ -3,8 +3,82 @@
  * 所有页面共享的交互功能
  */
 
+/**
+ * 动画工具模块 - 统一淡入淡出等常用动画
+ */
+const Anim = {
+    /**
+     * 淡出元素
+     * @param {HTMLElement} el
+     * @param {number} duration - 动画时长(ms)
+     * @param {string} transform - 额外的过渡变形
+     * @returns {Promise<void>}
+     */
+    fadeOut(el, duration, transform) {
+        return new Promise(resolve => {
+            if (transform) el.style.transform = transform;
+            el.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+            el.style.opacity = '0';
+            setTimeout(() => {
+                el.hidden = true;
+                resolve();
+            }, duration);
+        });
+    },
+
+    /**
+     * 淡入元素
+     * @param {HTMLElement} el
+     * @param {number} duration - 动画时长(ms)
+     * @param {string} fromTransform - 起始变形
+     * @param {string} toTransform - 结束变形
+     * @returns {Promise<void>}
+     */
+    fadeIn(el, duration, fromTransform, toTransform) {
+        return new Promise(resolve => {
+            el.hidden = false;
+            el.style.opacity = '0';
+            el.style.transform = fromTransform || 'translateY(10px)';
+            el.style.transition = `opacity ${duration}ms ease, transform ${duration}ms ease`;
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    el.style.opacity = '1';
+                    el.style.transform = toTransform || 'translateY(0)';
+                    setTimeout(() => resolve(), duration);
+                });
+            });
+        });
+    },
+
+    /**
+     * 交叉淡入淡出：先隐藏旧元素，再显示新元素
+     * @param {HTMLElement[]} hideEls - 要隐藏的元素
+     * @param {HTMLElement} showEl - 要显示的元素
+     * @param {number} duration - 动画时长(ms)
+     * @returns {Promise<void>}
+     */
+    crossFade(hideEls, showEl, duration) {
+        return Promise.all(hideEls.map(el => Anim.fadeOut(el, duration || 200)))
+            .then(() => Anim.fadeIn(showEl, duration || 200));
+    },
+
+    /**
+     * 批量淡出所有元素
+     * @param {HTMLElement[]} els - 要隐藏的元素
+     * @param {number} duration - 动画时长(ms)
+     * @param {string} transform - 过渡变形
+     * @returns {Promise<void>}
+     */
+    fadeOutAll(els, duration, transform) {
+        return Promise.all(els.map(el => Anim.fadeOut(el, duration || 200, transform)));
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
-    // 初始化所有交互功能
+    initNavbarScroll();
+    initScrollAnimations();
+    initLazyLoadImages();
+    initParallaxEffects();
     initLeafObservation();
     initWaterPath();
     initSoilLayers();
@@ -15,10 +89,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initTabs();
     initPlantCards();
     initActionCard();
-    initScrollAnimations();
-    initLazyLoadImages();
-    initParallaxEffects();
-    initNavbarScroll();
 });
 
 /**
@@ -32,42 +102,25 @@ function initLeafObservation() {
     if (points.length === 0 || !infoPanel) return;
 
     points.forEach(point => {
-        point.addEventListener('click', function() {
+        point.addEventListener('click', async function() {
             const target = this.dataset.point;
 
-            // 移除所有观察点的激活状态
             points.forEach(p => p.classList.remove('active'));
             this.classList.add('active');
 
-            // 隐藏默认提示
             const defaultInfo = infoPanel.querySelector('.info-default');
-            if (defaultInfo) {
-                defaultInfo.style.opacity = '0';
-                setTimeout(() => { defaultInfo.hidden = true; }, 200);
-            }
-
-            // 隐藏所有详情
-            const allDetails = infoPanel.querySelectorAll('.info-detail');
-            allDetails.forEach(d => {
-                d.style.opacity = '0';
-                d.style.transform = 'translateX(10px)';
-                setTimeout(() => { d.hidden = true; }, 200);
-            });
-
-            // 显示对应详情，带淡入动画
+            const allDetails = Array.from(infoPanel.querySelectorAll('.info-detail'));
             const targetDetail = infoPanel.querySelector(`[data-for="${target}"]`);
-            if (targetDetail) {
-                setTimeout(() => {
-                    targetDetail.hidden = false;
-                    targetDetail.style.opacity = '0';
-                    targetDetail.style.transform = 'translateX(10px)';
-                    targetDetail.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
-                    requestAnimationFrame(() => {
-                        targetDetail.style.opacity = '1';
-                        targetDetail.style.transform = 'translateX(0)';
-                    });
-                }, 250);
+            const hideEls = [];
+            if (defaultInfo && !defaultInfo.hidden) hideEls.push(defaultInfo);
+            hideEls.push(...allDetails.filter(d => !d.hidden));
+
+            if (hideEls.length > 0) {
+                await Anim.fadeOutAll(hideEls, 200, 'translateX(10px)');
+            }
+            if (targetDetail) {
+                await Anim.fadeIn(targetDetail, 200, 'translateX(10px)', 'translateX(0)');
             }
         });
     });
@@ -239,12 +292,16 @@ function initLeafComparison() {
         healthy: {
             title: '健康叶片',
             desc: '叶片翠绿，叶脉清晰，表面光滑，没有斑点或损伤。',
-            className: 'healthy-state'
+            className: 'healthy-state',
+            image: 'assets/images/leaf-healthy.png',
+            alt: '健康叶片'
         },
         polluted: {
             title: '污染叶片',
             desc: '叶片黄化，出现斑点，叶缘焦枯，表面有灰尘覆盖。',
-            className: 'polluted-state'
+            className: 'polluted-state',
+            image: 'assets/images/leaf-damaged.png',
+            alt: '污染叶片'
         }
     };
 
@@ -258,6 +315,7 @@ function initLeafComparison() {
 
             // 添加过渡动画
             const visual = leafDisplay.querySelector('.leaf-visual');
+            const image = document.getElementById('leafImage');
             const title = document.getElementById('leafTitle');
             const desc = document.getElementById('leafDesc');
 
@@ -274,12 +332,11 @@ function initLeafComparison() {
                 if (visual && leafData[state]) {
                     visual.classList.remove('healthy-state', 'polluted-state');
                     visual.classList.add(leafData[state].className);
+                }
 
-                    const demoLeaf = visual.querySelector('.demo-leaf');
-                    if (demoLeaf) {
-                        demoLeaf.classList.remove('healthy', 'polluted');
-                        demoLeaf.classList.add(state === 'healthy' ? 'healthy' : 'polluted');
-                    }
+                if (image && leafData[state]) {
+                    image.src = leafData[state].image;
+                    image.alt = leafData[state].alt;
                 }
 
                 if (title && leafData[state]) {
@@ -313,42 +370,25 @@ function initRootObservation() {
     if (points.length === 0 || !infoPanel) return;
 
     points.forEach(point => {
-        point.addEventListener('click', function() {
+        point.addEventListener('click', async function() {
             const target = this.dataset.point;
 
-            // 移除所有激活状态
             points.forEach(p => p.classList.remove('active'));
             this.classList.add('active');
 
-            // 隐藏默认内容
             const defaultInfo = infoPanel.querySelector('.root-info-default');
-            if (defaultInfo) {
-                defaultInfo.style.opacity = '0';
-                setTimeout(() => { defaultInfo.hidden = true; }, 200);
-            }
-
-            // 隐藏所有详情
-            const allDetails = infoPanel.querySelectorAll('.root-info-detail');
-            allDetails.forEach(d => {
-                d.style.opacity = '0';
-                d.style.transform = 'translateX(10px)';
-                setTimeout(() => { d.hidden = true; }, 200);
-            });
-
-            // 显示对应详情，带淡入动画
+            const allDetails = Array.from(infoPanel.querySelectorAll('.root-info-detail'));
             const targetDetail = infoPanel.querySelector(`[data-for="${target}"]`);
-            if (targetDetail) {
-                setTimeout(() => {
-                    targetDetail.hidden = false;
-                    targetDetail.style.opacity = '0';
-                    targetDetail.style.transform = 'translateX(10px)';
-                    targetDetail.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
-                    requestAnimationFrame(() => {
-                        targetDetail.style.opacity = '1';
-                        targetDetail.style.transform = 'translateX(0)';
-                    });
-                }, 250);
+            const hideEls = [];
+            if (defaultInfo && !defaultInfo.hidden) hideEls.push(defaultInfo);
+            hideEls.push(...allDetails.filter(d => !d.hidden));
+
+            if (hideEls.length > 0) {
+                await Anim.fadeOutAll(hideEls, 200);
+            }
+            if (targetDetail) {
+                await Anim.fadeIn(targetDetail, 200, 'translateX(10px)', 'translateX(0)');
             }
         });
     });
@@ -786,13 +826,11 @@ function initParallaxEffects() {
     if (!heroSection && !detailHeader) return;
 
     let ticking = false;
-    let lastScrollY = 0;
 
     window.addEventListener('scroll', () => {
         if (!ticking) {
             window.requestAnimationFrame(() => {
                 const scrolled = window.pageYOffset;
-                const scrollDelta = scrolled - lastScrollY;
 
                 // Hero 图片视差
                 if (heroImage) {
@@ -800,19 +838,12 @@ function initParallaxEffects() {
                     heroImage.style.transform = `translateY(${rate}px)`;
                 }
 
-                // 详情页头部视差
+                // 详情页头部 - 仅做微弱视差，避免内容偏移过大
                 if (detailHeader) {
-                    const headerRate = scrolled * 0.15;
+                    const headerRate = scrolled * 0.05;
                     detailHeader.style.transform = `translateY(${headerRate}px)`;
                 }
 
-                // 根据滚动方向微调透明度
-                if (heroSection && scrolled > 100) {
-                    const opacity = Math.max(0.6, 1 - (scrolled - 100) / 400);
-                    heroSection.style.opacity = opacity;
-                }
-
-                lastScrollY = scrolled;
                 ticking = false;
             });
             ticking = true;
@@ -863,4 +894,23 @@ function initNavbarScroll() {
             navbar.style.transform = 'translateY(0)';
         }
     });
+
+    // 回到顶部按钮
+    const backToTop = document.createElement('button');
+    backToTop.innerHTML = '&uarr;';
+    backToTop.className = 'back-to-top';
+    backToTop.setAttribute('aria-label', '回到顶部');
+    document.body.appendChild(backToTop);
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 400) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    }, { passive: true });
 }

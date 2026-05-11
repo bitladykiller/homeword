@@ -14,7 +14,12 @@
     --water-blue: #4FA3A5;
     --white: #FFFFFF;
     --light-gray: #E8E4DC;
-    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.12), 0 8px 20px rgba(0, 0, 0, 0.06);
+    --shadow-glow-green: 0 0 24px rgba(47, 107, 79, 0.15);
+    --shadow-glow-yellow: 0 0 24px rgba(244, 196, 48, 0.18);
     --radius: 12px;
     --transition: all 0.3s ease;
     --font-display: "Noto Serif SC", "Source Han Serif SC", "STSong", "SimSun", Georgia, serif;
@@ -48,9 +53,10 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image:
-        radial-gradient(circle at 10% 20%, rgba(47, 107, 79, 0.02) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(244, 196, 48, 0.02) 0%, transparent 20%),
-        radial-gradient(circle at 50% 50%, rgba(79, 163, 165, 0.015) 0%, transparent 30%);
+        radial-gradient(circle at 10% 20%, rgba(47, 107, 79, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(244, 196, 48, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 50% 50%, rgba(79, 163, 165, 0.02) 0%, transparent 35%),
+        radial-gradient(circle at 30% 70%, rgba(47, 107, 79, 0.02) 0%, transparent 20%);
 }
 
 
@@ -107,7 +113,7 @@ p {
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 8px var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .nav-container {
@@ -195,31 +201,44 @@ p {
 }
 
 /* ============================================
-   首页样式
+   首页样式 - 增强版
    ============================================ */
 .hero-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 60px;
     align-items: center;
     margin-bottom: 60px;
     position: relative;
-    padding: 40px 0;
+    padding: 56px 0;
+    overflow: visible;
 }
 
 .hero-section::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -20px;
     left: -40px;
     right: -40px;
-    bottom: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(47, 107, 79, 0.03) 0%,
-        rgba(244, 196, 48, 0.04) 50%,
-        rgba(79, 163, 165, 0.03) 100%
-    );
+    bottom: -20px;
+    background:
+        radial-gradient(ellipse 60% 50% at 20% 30%, rgba(47, 107, 79, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 80% 60%, rgba(244, 196, 48, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 30% at 50% 80%, rgba(79, 163, 165, 0.03) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(47, 107, 79, 0.03) 0%, rgba(244, 196, 48, 0.04) 50%, rgba(79, 163, 165, 0.03) 100%);
+    border-radius: 24px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -40px;
+    right: -40px;
+    bottom: -20px;
+    border: 1px solid rgba(47, 107, 79, 0.06);
     border-radius: 24px;
     pointer-events: none;
     z-index: -1;
@@ -320,12 +339,6 @@ p {
 }
 
 /* 向日葵CSS绘制 */
-.sunflower-hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .sunflower-container {
     position: relative;
     width: 200px;
@@ -443,18 +456,17 @@ p {
     border-radius: var(--radius);
     padding: 24px;
     text-align: center;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     transition: var(--transition);
 }
 
 .summary-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px var(--shadow);
+    box-shadow: var(--shadow-lg);
 }
 
 .card-icon {
     font-size: 2.5rem;
-    margin-bottom: 12px;
 }
 
 .summary-card h3 {
@@ -495,7 +507,7 @@ p {
     padding: 32px;
     text-decoration: none;
     color: var(--pollution-gray);
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     transition: var(--transition);
     display: flex;
     flex-direction: column;
@@ -504,7 +516,7 @@ p {
 
 .exhibition-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px var(--shadow);
+    box-shadow: var(--shadow-lg);
     border-color: var(--primary-green);
 }
 
@@ -574,7 +586,7 @@ p {
     padding: 28px;
     text-decoration: none;
     color: var(--pollution-gray);
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     transition: var(--transition);
     display: flex;
     flex-direction: column;
@@ -582,7 +594,7 @@ p {
 
 .pollution-card:hover {
     transform: scale(1.02);
-    box-shadow: 0 8px 24px var(--shadow);
+    box-shadow: var(--shadow-lg);
 }
 
 .card-visual {
@@ -594,15 +606,15 @@ p {
 }
 
 .air-visual {
-    background: linear-gradient(to bottom, #B0B0B0, #808080);
+    background: linear-gradient(to bottom, #C8C8C8, #909090);
 }
 
 .water-visual {
-    background: linear-gradient(to bottom, #4A4A4A, #2A2A2A);
+    background: linear-gradient(to bottom, #5A5A5A, #3A3A3A);
 }
 
 .soil-visual {
-    background: linear-gradient(to bottom, #8B7355, #6B5344);
+    background: linear-gradient(to bottom, #9B8365, #7B6354);
 }
 
 .pollution-card h2 {
@@ -694,7 +706,7 @@ p {
     border-radius: var(--radius);
     padding: 24px 28px;
     margin-bottom: 40px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     border-left: 4px solid var(--alert-red);
 }
 
@@ -723,7 +735,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .info-card h3 {
@@ -774,7 +786,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     min-height: 200px;
 }
 
@@ -836,7 +848,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     text-align: center;
     min-height: 80px;
     display: flex;
@@ -851,7 +863,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .soil-layer-item {
@@ -911,6 +923,10 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: 20px;
+    padding: 24px 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
 .exam-sunflower {
@@ -918,6 +934,9 @@ p {
     width: 180px;
     height: 250px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .exam-flower-head {
@@ -1023,14 +1042,14 @@ p {
 
 .exam-btn:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .exam-report {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .exam-report h3 {
@@ -1070,6 +1089,88 @@ p {
 }
 
 /* ============================================
+   伤害部位概览
+   ============================================ */
+.damage-overview {
+    margin-top: 48px;
+}
+
+.overview-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.overview-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid rgba(47, 107, 79, 0.12);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.overview-card:link,
+.overview-card:visited,
+.overview-card:hover,
+.overview-card:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+.overview-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(47, 107, 79, 0.28);
+    box-shadow: 0 14px 32px rgba(47, 107, 79, 0.12);
+}
+
+.overview-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(244, 196, 48, 0.18) 0%, rgba(47, 107, 79, 0.08) 100%);
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.overview-card h3 {
+    margin: 0;
+    color: var(--primary-green);
+}
+
+.overview-card p {
+    margin: 0;
+    color: #5B5B5B;
+}
+
+.overview-link {
+    margin-top: auto;
+    color: var(--primary-green);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.overview-card:hover .overview-link {
+    color: #245a42;
+}
+
+@media (max-width: 900px) {
+    .overview-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
    叶片对比
    ============================================ */
 .leaf-comparison {
@@ -1104,7 +1205,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 32px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     text-align: center;
 }
 
@@ -1145,7 +1246,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 20px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     text-align: center;
 }
 
@@ -1186,7 +1287,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     text-align: center;
 }
 
@@ -1267,7 +1368,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 32px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     margin-bottom: 24px;
     overflow-x: auto;
 }
@@ -1304,7 +1405,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     margin-bottom: 40px;
 }
 
@@ -1342,7 +1443,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 32px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     margin-bottom: 40px;
 }
 
@@ -1370,7 +1471,9 @@ p {
 .energy-fill {
     height: 100%;
     border-radius: 16px;
-    transition: width 1s ease;
+    transition: width 1s var(--ease-out-expo);
+    position: relative;
+    overflow: hidden;
 }
 
 .energy-fill.healthy {
@@ -1416,7 +1519,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .reason-number {
@@ -1453,7 +1556,7 @@ p {
     padding: 32px;
     text-decoration: none;
     color: var(--pollution-gray);
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     transition: var(--transition);
     display: flex;
     flex-direction: column;
@@ -1462,13 +1565,12 @@ p {
 
 .repair-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px var(--shadow);
+    box-shadow: var(--shadow-lg);
     border-color: var(--primary-green);
 }
 
 .repair-icon {
     font-size: 3rem;
-    margin-bottom: 16px;
 }
 
 .repair-card h2 {
@@ -1519,7 +1621,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 32px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .tab-panel h2 {
@@ -1568,7 +1670,7 @@ p {
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 0.6s;
+    transition: transform 0.6s var(--ease-out-expo);
     transform-style: preserve-3d;
 }
 
@@ -1588,7 +1690,8 @@ p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
 }
 
 .plant-card-front {
@@ -1599,6 +1702,9 @@ p {
     background: var(--primary-green);
     color: var(--white);
     transform: rotateY(180deg);
+    align-items: stretch;
+    justify-content: flex-start;
+    overflow-y: auto;
 }
 
 .plant-icon {
@@ -1622,6 +1728,7 @@ p {
 }
 
 .plant-info p {
+    color: rgba(255, 255, 255, 0.92);
     margin-bottom: 8px;
     font-size: 0.9rem;
 }
@@ -1648,13 +1755,13 @@ p {
     padding: 16px 20px;
     background: var(--white);
     border-radius: var(--radius);
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     cursor: pointer;
     transition: var(--transition);
 }
 
 .action-option:hover {
-    box-shadow: 0 4px 16px var(--shadow);
+    box-shadow: var(--shadow-md);
 }
 
 .action-option input {
@@ -1712,7 +1819,7 @@ p {
 .action-card {
     background: var(--white);
     border-radius: var(--radius);
-    box-shadow: 0 4px 20px var(--shadow);
+    box-shadow: var(--shadow-lg);
     overflow: hidden;
     border: 3px solid var(--primary-green);
 }
@@ -2376,7 +2483,7 @@ p {
     background: var(--white);
     border-radius: var(--radius);
     padding: 24px;
-    box-shadow: 0 2px 12px var(--shadow);
+    box-shadow: var(--shadow-md);
     min-height: 200px;
 }
 
@@ -2700,7 +2807,7 @@ p {
 .card-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 8px;
     transition: transform 0.4s var(--ease-out-expo);
 }
@@ -2712,9 +2819,11 @@ p {
 .comparison-image {
     max-width: 100%;
     height: auto;
-    max-height: 300px;
+    max-height: 280px;
     object-fit: contain;
     border-radius: 8px;
+    background: transparent;
+    padding: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
 }
@@ -2733,12 +2842,13 @@ p {
 }
 
 .plant-image {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
     border-radius: 50%;
     margin-bottom: 16px;
     border: 3px solid var(--sunflower-yellow);
+    background: transparent;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
 }
@@ -2749,11 +2859,12 @@ p {
 }
 
 .card-avatar {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
     border-radius: 50%;
     margin-bottom: 12px;
+    background: transparent;
     border: 3px solid var(--sunflower-yellow);
     transition: transform 0.3s var(--ease-out-expo);
 }
@@ -2763,19 +2874,60 @@ p {
 }
 
 .measure-image {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
     border-radius: 50%;
     flex-shrink: 0;
+    background: transparent;
+}
+
+/* 透明PNG图片容器 - 防止背景色穿透 */
+.card-visual {
+    background: rgba(255, 255, 255, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 12px;
+}
+
+.repair-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+}
+
+.plant-card-front {
+    background: linear-gradient(135deg, var(--white) 0%, #F8F6F2 100%);
+}
+
+.sunflower-hero {
+    background: radial-gradient(circle, rgba(244,196,48,0.06) 0%, rgba(47,107,79,0.03) 60%, transparent 100%);
+    border-radius: 24px;
+    padding: 20px;
 }
 
 /* 首页摘要卡片图标图片 */
 .icon-image {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     object-fit: contain;
-    margin-bottom: 12px;
     transition: transform 0.4s var(--ease-out-expo);
 }
 
@@ -2785,11 +2937,12 @@ p {
 
 /* 体检室向日葵图片 */
 .exam-sunflower-image {
-    width: 200px;
+    width: 180px;
     height: auto;
-    max-height: 280px;
+    max-height: 260px;
     object-fit: contain;
     margin-bottom: 20px;
+    background: transparent;
     filter: drop-shadow(0 6px 16px rgba(47, 107, 79, 0.12));
     transition: transform 0.4s var(--ease-out-expo), filter 0.4s ease;
 }
@@ -2799,13 +2952,18 @@ p {
     filter: drop-shadow(0 10px 24px rgba(47, 107, 79, 0.18));
 }
 
+.exam-report {
+    min-height: 100%;
+}
+
 /* 症状卡片图片 */
 .symptom-image {
-    width: 80px;
-    height: 80px;
+    width: 72px;
+    height: 72px;
     object-fit: contain;
     margin: 0 auto 12px;
     border-radius: 8px;
+    background: transparent;
     transition: transform 0.4s var(--ease-out-expo);
 }
 
@@ -2815,10 +2973,13 @@ p {
 
 /* 能量条装饰图片 */
 .energy-decoration {
-    width: 120px;
+    width: 100px;
     height: auto;
     object-fit: contain;
     flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.72);
+    border-radius: 12px;
+    padding: 8px;
     transition: transform 0.4s var(--ease-out-expo);
 }
 
@@ -2834,6 +2995,8 @@ p {
     object-fit: contain;
     margin-bottom: 24px;
     border-radius: 8px;
+    background: linear-gradient(135deg, rgba(47,107,79,0.04) 0%, rgba(79,163,165,0.04) 100%);
+    padding: 16px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
 }
@@ -2851,6 +3014,8 @@ p {
     object-fit: contain;
     border-radius: 8px;
     margin-bottom: 20px;
+    background: linear-gradient(135deg, rgba(139,115,85,0.06) 0%, rgba(107,83,68,0.04) 100%);
+    padding: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.4s var(--ease-out-expo);
 }
@@ -2859,12 +3024,10 @@ p {
     transform: scale(1.02);
 }
 
-/* 修复页面图标图片 */
 .repair-icon-image {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     object-fit: contain;
-    margin-bottom: 16px;
     transition: transform 0.4s var(--ease-out-expo);
 }
 
@@ -2879,6 +3042,8 @@ p {
 
 .photosynthesis-diagram img {
     border-radius: 8px;
+    background: linear-gradient(135deg, rgba(47,107,79,0.04) 0%, rgba(244,196,48,0.04) 100%);
+    padding: 12px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
     transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
 }
@@ -3091,7 +3256,7 @@ p {
 }
 
 .navbar {
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.35s var(--ease-out-expo), box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -3411,37 +3576,6 @@ p {
     transform: translateY(-4px);
 }
 
-.plant-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s var(--ease-out-expo);
-    transform-style: preserve-3d;
-}
-
-.plant-card.flipped .plant-card-inner {
-    transform: rotateY(180deg);
-}
-
-.plant-card-front,
-.plant-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: box-shadow 0.3s ease;
-}
-
-.plant-card-back {
-    transform: rotateY(180deg);
-    background: var(--white);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
 .plant-card:hover .plant-card-front,
 .plant-card:hover .plant-card-back {
     box-shadow: 0 12px 32px rgba(47, 107, 79, 0.15);
@@ -3498,11 +3632,32 @@ p {
    章节标题装饰
    ============================================ */
 
-h2 {
+/* 章节标题装饰 - 仅针对内容区标题 */
+section h2,
+.zone-header h2,
+.interactive-section h2,
+.root-comparison h2,
+.leaf-comparison h2,
+.underground-view h2,
+.root-impact h2,
+.action-section h2,
+.energy-bars h2,
+.vocab-list h2,
+.repair-section h2 {
     position: relative;
 }
 
-h2::after {
+section h2::after,
+.zone-header h2::after,
+.interactive-section h2::after,
+.root-comparison h2::after,
+.leaf-comparison h2::after,
+.underground-view h2::after,
+.root-impact h2::after,
+.action-section h2::after,
+.energy-bars h2::after,
+.vocab-list h2::after,
+.repair-section h2::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -3948,7 +4103,7 @@ h2::after {
 }
 
 /* ============================================
-   页面加载动画
+   页面加载动画 - 增强版
    ============================================ */
 
 @keyframes page-load {
@@ -3959,6 +4114,17 @@ h2::after {
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes page-enter {
+    0% {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
@@ -4003,6 +4169,18 @@ h2::after {
 .hero-image {
     animation: hero-image-float 6s ease-in-out infinite;
 }
+
+/* 首页区块逐次入场 */
+.summary-section,
+.exhibition-section {
+    animation: page-enter 0.5s var(--ease-out-expo) 0.4s both;
+}
+
+.summary-cards .summary-card:nth-child(1) { animation-delay: 0.08s; }
+.summary-cards .summary-card:nth-child(2) { animation-delay: 0.14s; }
+.summary-cards .summary-card:nth-child(3) { animation-delay: 0.20s; }
+.summary-cards .summary-card:nth-child(4) { animation-delay: 0.26s; }
+.summary-cards .summary-card:nth-child(5) { animation-delay: 0.32s; }
 
 /* ============================================
    详情页头部增强
@@ -4365,6 +4543,43 @@ html {
 }
 
 /* ============================================
+   回到顶部按钮
+   ============================================ */
+
+.back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    background: var(--primary-green);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s var(--ease-out-expo), background 0.3s ease;
+    z-index: 90;
+    box-shadow: 0 4px 12px rgba(47, 107, 79, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: #245a42;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(47, 107, 79, 0.35);
+}
+
+/* ============================================
    选中文本样式
    ============================================ */
 
@@ -4439,114 +4654,13 @@ img[loading="lazy"].loaded {
     opacity: 1;
 }
 
-/* ============================================
-   对比展示区增强
-   ============================================ */
+/* 对比图片切换动画 - 合并至上方对比展示区 */
 
-.comparison-display {
-    position: relative;
-    overflow: hidden;
-}
-
-.comparison-display::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-green), var(--sunflower-yellow));
-    z-index: 1;
-}
-
-.leaf-display {
-    position: relative;
-}
-
-.leaf-visual {
-    position: relative;
-    display: inline-block;
-    padding: 20px;
-    border-radius: 16px;
-    transition: all 0.4s var(--ease-out-expo);
-}
-
-.leaf-visual.healthy-state {
-    background: linear-gradient(135deg, rgba(47, 107, 79, 0.05) 0%, rgba(90, 154, 122, 0.08) 100%);
-}
-
-.leaf-visual.polluted-state {
-    background: linear-gradient(135deg, rgba(232, 93, 63, 0.05) 0%, rgba(181, 166, 66, 0.08) 100%);
-}
-
-/* 对比图片切换动画 */
-.comparison-image {
-    transition: transform 0.5s var(--ease-out-expo), filter 0.5s ease;
-}
-
-.leaf-visual:hover .comparison-image {
-    transform: scale(1.02);
-}
+/* 能量条渐变增强 */
 
 /* ============================================
-   能量条增强
+   路径步骤呼吸动画
    ============================================ */
-
-.energy-fill {
-    position: relative;
-    overflow: hidden;
-    transition: width 1s var(--ease-out-expo);
-}
-
-.energy-fill::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
-    animation: energy-shine 3s ease-in-out infinite;
-}
-
-@keyframes energy-shine {
-    0% { left: -100%; }
-    50%, 100% { left: 100%; }
-}
-
-/* 能量条填充动画 */
-.energy-fill.healthy {
-    background: linear-gradient(90deg, var(--primary-green), #4a9e6e);
-}
-
-.energy-fill.polluted {
-    background: linear-gradient(90deg, var(--alert-red), #f07a5f);
-}
-
-/* ============================================
-   路径步骤增强
-   ============================================ */
-
-.path-step {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.35s ease;
-}
-
-.path-step:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(47, 107, 79, 0.15);
-}
-
-.path-step.active {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(47, 107, 79, 0.25);
-}
 
 /* 步骤数字呼吸效果 */
 .step-number {
@@ -4659,7 +4773,6 @@ img[loading="lazy"].loaded {
 .card-visual,
 .symptom-card,
 .plant-card-front {
-    position: relative;
     overflow: hidden;
 }
 
@@ -5277,19 +5390,8 @@ img[loading="lazy"].loaded {
 }
 
 /* ============================================
-   原因卡片数字增强
+   原因卡片数字呼吸动画
    ============================================ */
-
-.reason-number {
-    position: relative;
-    z-index: 1;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.reason-card:hover .reason-number {
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(244, 196, 48, 0.4);
-}
 
 /* 数字呼吸效果 */
 .reason-number::after {
