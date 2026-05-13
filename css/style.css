@@ -5323,6 +5323,213 @@ img[loading="lazy"].loaded {
     }
 }
 
+/* ============================================
+   生态伙伴层 - 按康复进度分阶段出现
+   ============================================ */
+
+.eco-friends-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    overflow: visible;
+}
+
+.eco-friends-layer > div {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.8s ease, transform 0.8s var(--ease-out-expo);
+}
+
+/* --- 小鸟：从左上方飞入，经过向日葵上方，再飞到右侧 --- */
+.eco-bird {
+    width: 42px;
+    height: 36px;
+    top: 9%;
+    left: -10%;
+    background: url('../assets/images/eco-bird.png') no-repeat center / contain;
+}
+
+#actionContainer[data-healed="1"] .eco-bird,
+#actionContainer[data-healed="2"] .eco-bird {
+    opacity: 0.85;
+    animation: eco-bird-fly 8s linear infinite;
+}
+
+#actionContainer[data-healed="3"] .eco-bird,
+#actionContainer[data-healed="4"] .eco-bird,
+#actionContainer[data-healed="5"] .eco-bird,
+#actionContainer[data-healed="6"] .eco-bird {
+    opacity: 0.9;
+    animation: eco-bird-fly 6.5s linear infinite;
+}
+
+@keyframes eco-bird-fly {
+    0%   { transform: translateX(0) translateY(0) rotate(0deg) scale(1); }
+    10%  { transform: translateX(140px) translateY(22px) rotate(6deg) scale(1.04); }
+    20%  { transform: translateX(280px) translateY(-6px) rotate(-4deg) scale(0.98); }
+    30%  { transform: translateX(420px) translateY(16px) rotate(5deg) scale(1.03); }
+    40%  { transform: translateX(560px) translateY(-10px) rotate(-3deg) scale(0.97); }
+    50%  { transform: translateX(700px) translateY(8px) rotate(4deg) scale(1.02); }
+    60%  { transform: translateX(840px) translateY(-4px) rotate(-5deg) scale(0.99); }
+    70%  { transform: translateX(980px) translateY(14px) rotate(3deg) scale(1.01); }
+    80%  { transform: translateX(1120px) translateY(-8px) rotate(-2deg) scale(1); }
+    90%  { transform: translateX(1260px) translateY(4px) rotate(2deg) scale(0.98); }
+    100% { transform: translateX(1400px) translateY(0) rotate(0deg) scale(1); }
+}
+
+/* --- 黄蝴蝶：围绕花朵附近上下漂浮 --- */
+.eco-butterfly-yellow {
+    width: 26px;
+    height: 22px;
+    top: 24%;
+    left: 57%;
+    background: url('../assets/images/eco-butterfly-yellow.png') no-repeat center / contain;
+}
+
+#actionContainer[data-healed="3"] .eco-butterfly-yellow,
+#actionContainer[data-healed="4"] .eco-butterfly-yellow {
+    opacity: 0.75;
+    animation: eco-butterfly-float 4s ease-in-out infinite;
+}
+
+#actionContainer[data-healed="5"] .eco-butterfly-yellow,
+#actionContainer[data-healed="6"] .eco-butterfly-yellow {
+    opacity: 0.9;
+    animation: eco-butterfly-float 3.2s ease-in-out infinite;
+}
+
+/* --- 蓝蝴蝶：围绕花朵另一侧漂浮 --- */
+.eco-butterfly-blue {
+    width: 24px;
+    height: 21px;
+    top: 30%;
+    left: 33%;
+    background: url('../assets/images/eco-butterfly-blue.png') no-repeat center / contain;
+}
+
+#actionContainer[data-healed="3"] .eco-butterfly-blue,
+#actionContainer[data-healed="4"] .eco-butterfly-blue {
+    opacity: 0.7;
+    animation: eco-butterfly-float-alt 4.5s ease-in-out infinite;
+}
+
+#actionContainer[data-healed="5"] .eco-butterfly-blue,
+#actionContainer[data-healed="6"] .eco-butterfly-blue {
+    opacity: 0.85;
+    animation: eco-butterfly-float-alt 3.6s ease-in-out infinite;
+}
+
+@keyframes eco-butterfly-float {
+    0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+    25%      { transform: translate(18px, -14px) rotate(5deg); }
+    50%      { transform: translate(8px, -22px) rotate(-3deg); }
+    75%      { transform: translate(-10px, -10px) rotate(8deg); }
+}
+
+@keyframes eco-butterfly-float-alt {
+    0%, 100% { transform: translate(0, 0) rotate(5deg); }
+    25%      { transform: translate(-14px, -12px) rotate(-5deg); }
+    50%      { transform: translate(-6px, -20px) rotate(3deg); }
+    75%      { transform: translate(12px, -8px) rotate(-8deg); }
+}
+
+/* --- 蜜蜂：靠近花盘，小范围左右飞动 --- */
+.eco-bee {
+    width: 21px;
+    height: 20px;
+    top: 20%;
+    left: 47%;
+    background: url('../assets/images/eco-bee.png') no-repeat center / contain;
+}
+
+#actionContainer[data-healed="3"] .eco-bee,
+#actionContainer[data-healed="4"] .eco-bee {
+    opacity: 0.7;
+    animation: eco-bee-buzz 3s ease-in-out infinite;
+}
+
+#actionContainer[data-healed="5"] .eco-bee,
+#actionContainer[data-healed="6"] .eco-bee {
+    opacity: 0.85;
+    animation: eco-bee-buzz 2.2s ease-in-out infinite;
+}
+
+@keyframes eco-bee-buzz {
+    0%, 100% { transform: translate(0, 0); }
+    20%      { transform: translate(10px, -6px); }
+    40%      { transform: translate(-6px, -10px); }
+    60%      { transform: translate(14px, -4px); }
+    80%      { transform: translate(-4px, -8px); }
+}
+
+/* --- 蜻蜓：在背景中慢速横向滑动 --- */
+.eco-dragonfly {
+    width: 34px;
+    height: 28px;
+    top: 12%;
+    left: 71%;
+    background: url('../assets/images/eco-dragonfly.png') no-repeat center / contain;
+}
+
+#actionContainer[data-healed="5"] .eco-dragonfly {
+    opacity: 0.65;
+    animation: eco-dragonfly-glide 8s ease-in-out infinite;
+}
+
+#actionContainer[data-healed="6"] .eco-dragonfly {
+    opacity: 0.8;
+    animation: eco-dragonfly-glide 6s ease-in-out infinite;
+}
+
+@keyframes eco-dragonfly-glide {
+    0%, 100% { transform: translateX(0) translateY(0); }
+    30%      { transform: translateX(-40px) translateY(8px); }
+    60%      { transform: translateX(-20px) translateY(-6px); }
+    80%      { transform: translateX(-50px) translateY(4px); }
+}
+
+/* --- 瓢虫：停在叶片或土壤附近，轻微晃动 --- */
+.eco-ladybug {
+    width: 18px;
+    height: 15px;
+    bottom: 20%;
+    left: 39%;
+    background: url('../assets/images/eco-ladybug.png') no-repeat center / contain;
+}
+
+#actionContainer[data-healed="5"] .eco-ladybug {
+    opacity: 0.7;
+    animation: eco-ladybug-wiggle 3.5s ease-in-out infinite;
+}
+
+#actionContainer[data-healed="6"] .eco-ladybug {
+    opacity: 0.85;
+    animation: eco-ladybug-wiggle 2.8s ease-in-out infinite;
+}
+
+@keyframes eco-ladybug-wiggle {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    25%      { transform: rotate(-6deg) translateY(-2px); }
+    50%      { transform: rotate(4deg) translateY(-1px); }
+    75%      { transform: rotate(-3deg) translateY(-2px); }
+}
+
+/* 6项全选：所有生态伙伴循环动画增强 */
+#actionContainer[data-healed="6"] .eco-friends-layer > div {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
+
+/* 响应式：移动端缩小生态伙伴 */
+@media (max-width: 520px) {
+    .eco-bird     { transform: scale(0.85); }
+    .eco-butterfly-yellow,
+    .eco-butterfly-blue { transform: scale(0.85); }
+    .eco-bee      { transform: scale(0.85); }
+    .eco-dragonfly { transform: scale(0.85); }
+    .eco-ladybug  { transform: scale(0.85); }
+}
+
 /* --- 行动选项上的康复标签 --- */
 .heal-tag {
     display: inline-block;
@@ -5416,4 +5623,303 @@ img[loading="lazy"].loaded {
 
 .reason-card:hover .reason-number::after {
     animation: none;
+}
+
+/* ============================================
+   ┌─────────────────────────────────────────┐
+   │   生态系统联动模块                       │
+   │   plant-damage / repair / action 三页    │
+   └─────────────────────────────────────────┘
+   ============================================ */
+
+/* ---------- 受损生态模块（plant-damage.html） ---------- */
+.ecosystem-damage-section {
+    margin-top: 56px;
+    padding: 36px 32px;
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid rgba(47, 107, 79, 0.12);
+    border-left: 4px solid var(--alert-red);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.ecosystem-damage-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--primary-green);
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+}
+
+.ecosystem-damage-content {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 36px;
+    align-items: center;
+}
+
+.ecosystem-damage-visual {
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.ecosystem-damage-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.ecosystem-damage-text p {
+    font-size: 1rem;
+    line-height: 1.95;
+    color: #4A4A4A;
+    margin-bottom: 16px;
+}
+
+.ecosystem-damage-list {
+    list-style: none;
+    margin: 18px 0;
+    padding: 0;
+}
+
+.ecosystem-damage-list li {
+    position: relative;
+    padding: 10px 0 10px 20px;
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: #4A4A4A;
+    border-bottom: 1px dashed rgba(47, 107, 79, 0.15);
+}
+
+.ecosystem-damage-list li:last-child {
+    border-bottom: none;
+}
+
+.ecosystem-damage-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 18px;
+    width: 8px;
+    height: 8px;
+    background: var(--alert-red);
+    border-radius: 50%;
+}
+
+.ecosystem-damage-list strong {
+    color: var(--primary-green);
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.ecosystem-damage-conclusion {
+    margin-top: 20px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(244, 196, 48, 0.12), rgba(47, 107, 79, 0.06));
+    border-left: 3px solid var(--sunflower-yellow);
+    border-radius: 8px;
+    font-size: 1rem !important;
+    line-height: 1.9 !important;
+    color: #4A4A4A !important;
+    margin-bottom: 0 !important;
+}
+
+/* ---------- 生态朋友回来了模块（repair.html） ---------- */
+.ecosystem-recovery-section {
+    margin: 80px 0 40px;
+    padding: 56px 48px;
+    background: linear-gradient(135deg, #f6f1e8 0%, #eaf4e0 100%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.ecosystem-recovery-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-green), var(--sunflower-yellow), var(--water-blue));
+}
+
+.ecosystem-recovery-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    color: var(--primary-green);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+}
+
+.ecosystem-recovery-intro {
+    text-align: center;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--pollution-gray);
+    max-width: 760px;
+    margin: 0 auto 40px;
+}
+
+.ecosystem-recovery-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.ecosystem-recovery-visual {
+    background: linear-gradient(145deg, #ffffff, #f0e8d6);
+    border-radius: var(--radius);
+    padding: 18px;
+    box-shadow: var(--shadow-sm);
+    max-width: 880px;
+    margin: 0 auto;
+}
+
+.ecosystem-recovery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+.eco-friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.eco-friend-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px 18px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid rgba(47, 107, 79, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.eco-friend-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sunflower-yellow), var(--primary-green));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.eco-friend-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-green);
+}
+
+.eco-friend-card:hover::before {
+    transform: scaleX(1);
+}
+
+.eco-friend-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #fff7d6, #eaf4e0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+    transition: var(--transition);
+}
+
+.eco-friend-card:hover .eco-friend-icon {
+    transform: scale(1.08) rotate(-4deg);
+}
+
+.eco-friend-icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.eco-friend-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--primary-green);
+    margin-bottom: 8px;
+}
+
+.eco-friend-card p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--pollution-gray);
+    opacity: 0.85;
+}
+
+/* ---------- 生态朋友回归说明（action.html） ---------- */
+.ecosystem-note {
+    margin: 32px 0;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(244, 196, 48, 0.08), rgba(47, 107, 79, 0.06));
+    border-radius: var(--radius);
+    border-left: 4px solid var(--sunflower-yellow);
+    box-shadow: var(--shadow-sm);
+}
+
+.ecosystem-note h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--primary-green);
+    margin-bottom: 14px;
+}
+
+.ecosystem-note p {
+    font-size: 0.98rem;
+    line-height: 1.85;
+    color: var(--pollution-gray);
+    margin-bottom: 10px;
+}
+
+.ecosystem-note p:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 860px) {
+    .ecosystem-damage-section,
+    .ecosystem-recovery-section {
+        padding: 40px 22px;
+        margin: 56px 0 32px;
+    }
+    .ecosystem-damage-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .ecosystem-damage-section h2,
+    .ecosystem-recovery-section h2 {
+        font-size: 1.55rem;
+    }
+    .eco-friends-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 14px;
+    }
+    .eco-friend-card {
+        padding: 20px 14px;
+    }
+    .eco-friend-icon {
+        width: 60px;
+        height: 60px;
+    }
+    .eco-friend-icon img {
+        width: 40px;
+        height: 40px;
+    }
+    .ecosystem-note {
+        padding: 22px 20px;
+    }
 }
