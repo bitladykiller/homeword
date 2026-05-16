@@ -263,25 +263,7 @@ body { cursor: auto !important; }
     font-weight: 600;
 }
 
-/* ------------------------------------------------------------------ #
-   页脚快速链接
-   # ------------------------------------------------------------------ */
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 12px;
-}
-
-.footer-links a {
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover { color: var(--sunflower-yellow); }
+/* footer-links 样式已移至 style.css */
 
 /* ------------------------------------------------------------------ #
    响应式补充
