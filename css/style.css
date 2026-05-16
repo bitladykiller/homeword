@@ -4103,8 +4103,137 @@ section h2::after,
 }
 
 /* ============================================
-   页面加载动画 - 增强版
+   效果控制面板
    ============================================ */
+
+.effect-control-panel {
+    position: fixed;
+    bottom: 88px;
+    right: 24px;
+    z-index: 95;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.effect-toggle-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary-green);
+    border: none;
+    color: var(--white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(47, 107, 79, 0.3);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.effect-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(47, 107, 79, 0.4);
+}
+
+.effect-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+.effect-menu {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow-lg);
+    min-width: 180px;
+    animation: menu-appear 0.2s ease;
+}
+
+@keyframes menu-appear {
+    from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.effect-menu-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--primary-green);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.effect-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+.effect-option input {
+    display: none;
+}
+
+.effect-label {
+    font-size: 0.9rem;
+    color: var(--pollution-gray);
+}
+
+.effect-switch {
+    position: relative;
+    width: 40px;
+    height: 22px;
+    background: var(--light-gray);
+    border-radius: 11px;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.effect-switch::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.effect-option input:checked + .effect-switch {
+    background: var(--primary-green);
+}
+
+.effect-option input:checked + .effect-switch::after {
+    transform: translateX(18px);
+}
+
+@media (max-width: 480px) {
+    .effect-control-panel {
+        bottom: 80px;
+        right: 16px;
+    }
+
+    .effect-toggle-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
 
 @keyframes page-load {
     0% {
