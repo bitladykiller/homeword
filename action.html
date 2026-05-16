@@ -44,144 +44,89 @@
                         <div class="eco-ladybug" role="img" aria-label="瓢虫"></div>
                     </div>
                     <div class="healing-sunflower" id="healingSunflower" role="img" aria-label="小葵康复状态">
-                        <svg class="healing-sunflower-svg" viewBox="0 0 260 320" aria-hidden="true" focusable="false">
-                            <defs>
-                                <radialGradient id="xkFaceGradient" cx="42%" cy="35%" r="68%">
-                                    <stop offset="0%" stop-color="#FFF6D8"/>
-                                    <stop offset="58%" stop-color="#FFE4AA"/>
-                                    <stop offset="100%" stop-color="#F3B968"/>
-                                </radialGradient>
-                                <linearGradient id="xkPetalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#FFF36A"/>
-                                    <stop offset="42%" stop-color="#FFD43F"/>
-                                    <stop offset="100%" stop-color="#F2A90F"/>
-                                </linearGradient>
-                                <linearGradient id="xkPetalShadow" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#FDD84A"/>
-                                    <stop offset="100%" stop-color="#D98B08"/>
-                                </linearGradient>
-                                <linearGradient id="xkLeafGradient" x1="8%" y1="8%" x2="92%" y2="92%">
-                                    <stop offset="0%" stop-color="#9BD86B"/>
-                                    <stop offset="48%" stop-color="#4F9C3D"/>
-                                    <stop offset="100%" stop-color="#1F6B35"/>
-                                </linearGradient>
-                                <linearGradient id="xkStemGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stop-color="#2C7B35"/>
-                                    <stop offset="45%" stop-color="#6DBB4A"/>
-                                    <stop offset="100%" stop-color="#1F6B35"/>
-                                </linearGradient>
-                                <filter id="xkSoftShadow" x="-30%" y="-30%" width="160%" height="170%">
-                                    <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#2F6B4F" flood-opacity="0.18"/>
-                                </filter>
-                                <filter id="xkPetalTexture" x="-12%" y="-12%" width="124%" height="124%">
-                                    <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="8" result="texture"/>
-                                    <feColorMatrix in="texture" type="saturate" values="0" result="monoTexture"/>
-                                    <feComponentTransfer in="monoTexture" result="petalGrain">
-                                        <feFuncA type="table" tableValues="0 0.09"/>
-                                    </feComponentTransfer>
-                                    <feBlend in="SourceGraphic" in2="petalGrain" mode="multiply"/>
-                                </filter>
-                            </defs>
-
-                            <g class="xk-aura">
-                                <circle cx="130" cy="106" r="86"/>
-                                <circle cx="130" cy="106" r="118"/>
-                            </g>
-
-                            <g class="xk-sparkles">
-                                <path d="M38 66l5 12 12 5-12 5-5 12-5-12-12-5 12-5z"/>
-                                <path d="M216 58l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
-                                <circle cx="214" cy="212" r="3.5"/>
-                                <circle cx="46" cy="218" r="3"/>
-                            </g>
-
-                            <g class="xk-plant" filter="url(#xkSoftShadow)">
-                                <g class="xk-stem-group">
-                                    <path class="xk-stem" d="M124 149 C118 187 121 233 116 290 C121 298 139 298 144 290 C138 235 141 187 135 149 Z"/>
-                                    <path class="xk-stem-highlight" d="M130 153 C127 197 128 244 126 288"/>
-                                </g>
-
-                                <g class="xk-leaves">
-                                    <path class="xk-leaf xk-leaf-left" d="M118 222 C82 199 54 205 34 234 C66 249 96 246 121 225 Z"/>
-                                    <path class="xk-leaf-vein" d="M45 233 C73 228 95 224 118 222 M72 225 L58 214 M83 225 L73 209 M94 224 L91 211"/>
-                                    <path class="xk-leaf xk-leaf-right" d="M140 231 C173 203 206 207 228 236 C199 256 164 256 139 234 Z"/>
-                                    <path class="xk-leaf-vein" d="M218 236 C190 229 164 232 140 231 M187 229 L202 217 M174 230 L184 214 M160 231 L161 216"/>
-                                    <path class="xk-leaf xk-leaf-low-left" d="M121 266 C91 253 72 260 58 286 C85 295 108 289 123 270 Z"/>
-                                    <path class="xk-leaf xk-leaf-low-right" d="M139 268 C166 252 190 258 205 282 C181 295 156 290 138 271 Z"/>
-                                </g>
-
-                                <g class="xk-bloom">
-                                    <g class="xk-petal-back">
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(22.5 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(45 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(67.5 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(90 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(112.5 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(135 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(157.5 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(180 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(202.5 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(225 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(247.5 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(270 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(292.5 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(315 130 106)"/>
-                                        <ellipse class="xk-petal" cx="130" cy="23" rx="15" ry="49" transform="rotate(337.5 130 106)"/>
-                                    </g>
-                                    <g class="xk-petal-front">
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(11.25 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(33.75 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(56.25 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(78.75 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(101.25 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(123.75 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(146.25 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(168.75 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(191.25 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(213.75 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(236.25 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(258.75 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(281.25 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(303.75 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(326.25 130 106)"/>
-                                        <ellipse class="xk-petal xk-petal-front-shape" cx="130" cy="28" rx="12" ry="43" transform="rotate(348.75 130 106)"/>
-                                    </g>
-                                    <g class="xk-seed-ring">
-                                        <circle cx="130" cy="106" r="59"/>
-                                        <circle cx="130" cy="106" r="50"/>
-                                    </g>
-                                    <circle class="xk-face" cx="130" cy="106" r="48"/>
-                                    <g class="xk-face-details">
-                                        <path class="xk-brow" d="M91 83 C101 76 111 77 119 84"/>
-                                        <path class="xk-brow" d="M141 84 C149 77 160 76 169 83"/>
-                                        <g class="xk-eye xk-eye-left">
-                                            <ellipse cx="105" cy="104" rx="13" ry="17"/>
-                                            <circle cx="101" cy="98" r="4"/>
-                                            <circle cx="110" cy="111" r="2.5"/>
-                                        </g>
-                                        <g class="xk-eye xk-eye-right">
-                                            <ellipse cx="155" cy="104" rx="13" ry="17"/>
-                                            <circle cx="151" cy="98" r="4"/>
-                                            <circle cx="160" cy="111" r="2.5"/>
-                                        </g>
-                                        <path class="xk-mouth" d="M115 128 C123 141 139 141 146 128 C137 133 125 133 115 128 Z"/>
-                                        <ellipse class="xk-blush xk-blush-left" cx="91" cy="125" rx="10" ry="6"/>
-                                        <ellipse class="xk-blush xk-blush-right" cx="169" cy="125" rx="10" ry="6"/>
-                                        <path class="xk-tired-mouth" d="M116 134 C124 128 137 128 145 134"/>
-                                        <path class="xk-tired-mark" d="M83 121 l-5 6 M91 124 l-4 5 M177 121 l5 6 M169 124 l4 5"/>
-                                    </g>
-                                </g>
-                            </g>
-
-                            <g class="xk-soil">
-                                <ellipse cx="130" cy="296" rx="72" ry="13"/>
-                                <circle cx="92" cy="291" r="4"/>
-                                <circle cx="107" cy="298" r="3"/>
-                                <circle cx="164" cy="292" r="4"/>
-                                <circle cx="181" cy="298" r="3"/>
-                            </g>
-                        </svg>
+                        <div class="sunflower-3d-container" id="sunflower3d">
+                            <div class="sunflower-3d-scene">
+                                <div class="sunflower-3d-wrapper" id="sunflower3dWrapper">
+                                    <!-- 茎 -->
+                                    <div class="sf3d-stem">
+                                        <div class="sf3d-stem-face sf3d-stem-front"></div>
+                                        <div class="sf3d-stem-face sf3d-stem-back"></div>
+                                        <div class="sf3d-stem-face sf3d-stem-left"></div>
+                                        <div class="sf3d-stem-face sf3d-stem-right"></div>
+                                    </div>
+                                    <!-- 叶片 -->
+                                    <div class="sf3d-leaf sf3d-leaf-left">
+                                        <div class="sf3d-leaf-face"></div>
+                                    </div>
+                                    <div class="sf3d-leaf sf3d-leaf-right">
+                                        <div class="sf3d-leaf-face"></div>
+                                    </div>
+                                    <div class="sf3d-leaf sf3d-leaf-low-left">
+                                        <div class="sf3d-leaf-face"></div>
+                                    </div>
+                                    <div class="sf3d-leaf sf3d-leaf-low-right">
+                                        <div class="sf3d-leaf-face"></div>
+                                    </div>
+                                    <!-- 花朵 -->
+                                    <div class="sf3d-flower" id="sf3dFlower">
+                                        <!-- 背面花瓣 -->
+                                        <div class="sf3d-petal-layer sf3d-petal-back">
+                                            <div class="sf3d-petal" style="--i:0"></div>
+                                            <div class="sf3d-petal" style="--i:1"></div>
+                                            <div class="sf3d-petal" style="--i:2"></div>
+                                            <div class="sf3d-petal" style="--i:3"></div>
+                                            <div class="sf3d-petal" style="--i:4"></div>
+                                            <div class="sf3d-petal" style="--i:5"></div>
+                                            <div class="sf3d-petal" style="--i:6"></div>
+                                            <div class="sf3d-petal" style="--i:7"></div>
+                                            <div class="sf3d-petal" style="--i:8"></div>
+                                            <div class="sf3d-petal" style="--i:9"></div>
+                                            <div class="sf3d-petal" style="--i:10"></div>
+                                            <div class="sf3d-petal" style="--i:11"></div>
+                                            <div class="sf3d-petal" style="--i:12"></div>
+                                            <div class="sf3d-petal" style="--i:13"></div>
+                                            <div class="sf3d-petal" style="--i:14"></div>
+                                            <div class="sf3d-petal" style="--i:15"></div>
+                                        </div>
+                                        <!-- 正面花瓣 -->
+                                        <div class="sf3d-petal-layer sf3d-petal-front">
+                                            <div class="sf3d-petal" style="--i:0"></div>
+                                            <div class="sf3d-petal" style="--i:1"></div>
+                                            <div class="sf3d-petal" style="--i:2"></div>
+                                            <div class="sf3d-petal" style="--i:3"></div>
+                                            <div class="sf3d-petal" style="--i:4"></div>
+                                            <div class="sf3d-petal" style="--i:5"></div>
+                                            <div class="sf3d-petal" style="--i:6"></div>
+                                            <div class="sf3d-petal" style="--i:7"></div>
+                                            <div class="sf3d-petal" style="--i:8"></div>
+                                            <div class="sf3d-petal" style="--i:9"></div>
+                                            <div class="sf3d-petal" style="--i:10"></div>
+                                            <div class="sf3d-petal" style="--i:11"></div>
+                                            <div class="sf3d-petal" style="--i:12"></div>
+                                            <div class="sf3d-petal" style="--i:13"></div>
+                                            <div class="sf3d-petal" style="--i:14"></div>
+                                            <div class="sf3d-petal" style="--i:15"></div>
+                                        </div>
+                                        <!-- 花心 -->
+                                        <div class="sf3d-center">
+                                            <div class="sf3d-center-face"></div>
+                                            <div class="sf3d-eyes">
+                                                <div class="sf3d-eye sf3d-eye-left">
+                                                    <div class="sf3d-pupil"></div>
+                                                </div>
+                                                <div class="sf3d-eye sf3d-eye-right">
+                                                    <div class="sf3d-pupil"></div>
+                                                </div>
+                                            </div>
+                                            <div class="sf3d-mouth"></div>
+                                            <div class="sf3d-blush sf3d-blush-left"></div>
+                                            <div class="sf3d-blush sf3d-blush-right"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sunflower-3d-hint">🖱️ 拖拽旋转查看小葵</div>
+                        </div>
                     </div>
                     <div class="healing-ring" id="healingRing" role="progressbar" aria-label="小葵康复进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
                         <span class="healing-percent" id="healingPercent">0%</span>
@@ -280,5 +225,6 @@
     <script src="js/audio-effects.js"></script>
     <script src="js/pollen-effect.js"></script>
     <script src="js/effect-control.js"></script>
+    <script src="js/sunflower-3d.js"></script>
 </body>
 </html>
