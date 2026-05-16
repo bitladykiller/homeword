@@ -66,13 +66,16 @@ const ScrollBottomEgg = {
     },
 
     checkBottom() {
-        const scrolled = window.innerHeight + window.scrollY;
-        const total = document.documentElement.scrollHeight;
-        const isAtBottom = scrolled >= total - 50;
+        const footer = document.querySelector('.footer');
+        if (!footer) return;
 
-        if (isAtBottom && !this.isShown) {
+        const footerRect = footer.getBoundingClientRect();
+        // 页脚顶部还在视口下方时触发（内容看完但页脚未入视口）
+        const isContentDone = footerRect.top > window.innerHeight && footerRect.top < window.innerHeight + 120;
+
+        if (isContentDone && !this.isShown) {
             this.show();
-        } else if (!isAtBottom && this.isShown) {
+        } else if (!isContentDone && this.isShown) {
             this.hide();
         }
     },
