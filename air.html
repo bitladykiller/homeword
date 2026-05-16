@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>空气污染观察 - 灰雾中的叶片</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhance.css">
 </head>
 <body>
     <nav class="navbar">
@@ -26,8 +27,9 @@
     </div>
 
     <main class="main-content">
+        <div class="page-banner banner-air"><div class="container"><section class="detail-header"><h1>空气污染观察：叶片接触到的灰雾</h1><p>工厂废气、汽车尾气、燃煤排放、城市扬尘——这些污染物通过空气直接接触植物叶片，造成可见的伤害。</p></section></div></div>
         <div class="container">
-            <section class="detail-header">
+            <section class="detail-header" style="display:none">
                 <h1>空气污染观察：叶片接触到的灰雾</h1>
                 <p>工厂废气、汽车尾气、燃煤排放、城市扬尘——这些污染物通过空气直接接触植物叶片，造成可见的伤害。</p>
             </section>
@@ -86,6 +88,28 @@
                         <p><strong>伤害原理：</strong>PM2.5颗粒物沉积在叶片表面，可直接<span class="text-emphasis">堵塞气孔开口</span>，阻碍CO₂进入和水蒸气排出。颗粒物还改变叶片光学特性，减少光能吸收；其携带的重金属和酸性成分可对叶片造成化学损伤。</p>
                         <p><strong>关键数据：</strong>PM2.5浓度>150 μg/m³时，植物气孔导度可下降<span class="text-alert">20-40%</span>；颗粒物覆盖可使叶片光合有效辐射吸收降低10-30%。城市道路旁植物叶片颗粒物负荷可达10-50 μg/cm²。</p>
                     </div>
+
+                    <div class="info-box" style="margin-top: 24px;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 12px;">空气污染对植物的影响程度</h3>
+                        <div class="data-bar-group">
+                            <div class="data-bar-item">
+                                <div class="data-bar-label"><span>光合速率下降</span><strong>30%</strong></div>
+                                <div class="data-bar-track"><div class="data-bar-fill danger" style="width: 30%"></div></div>
+                            </div>
+                            <div class="data-bar-item">
+                                <div class="data-bar-label"><span>气孔导度下降</span><strong>40%</strong></div>
+                                <div class="data-bar-track"><div class="data-bar-fill danger" style="width: 40%"></div></div>
+                            </div>
+                            <div class="data-bar-item">
+                                <div class="data-bar-label"><span>叶绿素含量下降</span><strong>25%</strong></div>
+                                <div class="data-bar-track"><div class="data-bar-fill warning" style="width: 25%"></div></div>
+                            </div>
+                            <div class="data-bar-item">
+                                <div class="data-bar-label"><span>生物量减少</span><strong>20%</strong></div>
+                                <div class="data-bar-track"><div class="data-bar-fill warning" style="width: 20%"></div></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -138,6 +162,12 @@
     <footer class="footer">
         <p>小葵的污染体检报告｜高污染环境对植物危害科普网站</p>
         <p class="footer-note">本网站为课程作业展示项目</p>
+            <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="pollution-record.html">污染记录</a>
+            <a href="plant-damage.html">伤害观察</a>
+            <a href="repair.html">修复建议</a>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>
@@ -145,5 +175,6 @@
     <script src="js/pollen-effect.js"></script>
     <script src="js/effect-control.js"></script>
     <script src="js/page-effects.js"></script>
+    <script src="js/enhance.js"></script>
 </body>
 </html>

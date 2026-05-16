@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>污染环境记录 - 第一展区</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/enhance.css">
 </head>
 <body>
     <nav class="navbar">
@@ -26,8 +27,9 @@
     </div>
 
     <main class="main-content">
+        <div class="page-banner banner-pollution"><div class="container"><section class="detail-header"><h1>第一展区：污染环境记录</h1><p>小葵生长在城市边缘的一片田野上。抬头是灰蒙蒙的天空，低头是发黑的河水，脚下是残留着重金属的土壤。</p></section></div></div>
         <div class="container">
-            <section class="zone-header">
+            <section class="zone-header" style="display:none">
                 <h1 class="zone-title">第一展区：污染环境记录</h1>
                 <p class="zone-intro">小葵生长在城市边缘的一片田野上。抬头是灰蒙蒙的天空，低头是发黑的河水，脚下是残留着重金属的土壤。<span class="text-highlight">三种污染同时存在，交织成一张无形的网</span>，正在悄悄改变小葵赖以生存的一切。</p>
             </section>
@@ -43,7 +45,7 @@
             </div>
 
             <section class="pollution-cards">
-                <a href="air.html" class="pollution-card air-card">
+                <a href="air.html" class="pollution-card air-card card-accent-red">
                     <div class="card-visual">
                         <img src="assets/images/air-pollution-scene.png" alt="灰雾空气污染场景" class="card-image">
                     </div>
@@ -57,7 +59,7 @@
                     <span class="card-link">查看详情 &rarr;</span>
                 </a>
 
-                <a href="water.html" class="pollution-card water-card">
+                <a href="water.html" class="pollution-card water-card card-accent-blue">
                     <div class="card-visual">
                         <img src="assets/images/water-pollution-scene.png" alt="黑色河水污染场景" class="card-image">
                     </div>
@@ -70,7 +72,7 @@
                     <span class="card-link">查看详情 &rarr;</span>
                 </a>
 
-                <a href="soil.html" class="pollution-card soil-card">
+                <a href="soil.html" class="pollution-card soil-card card-accent-yellow">
                     <div class="card-visual">
                         <img src="assets/images/soil-pollution-scene.png" alt="受损土壤污染场景" class="card-image">
                     </div>
@@ -89,6 +91,12 @@
     <footer class="footer">
         <p>小葵的污染体检报告｜高污染环境对植物危害科普网站</p>
         <p class="footer-note">本网站为课程作业展示项目</p>
+            <div class="footer-links">
+            <a href="index.html">首页</a>
+            <a href="pollution-record.html">污染记录</a>
+            <a href="plant-damage.html">伤害观察</a>
+            <a href="repair.html">修复建议</a>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>
@@ -96,5 +104,6 @@
     <script src="js/pollen-effect.js"></script>
     <script src="js/effect-control.js"></script>
     <script src="js/page-effects.js"></script>
+    <script src="js/enhance.js"></script>
 </body>
 </html>
