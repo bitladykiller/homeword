@@ -108,7 +108,7 @@ p {
    导航栏
    ============================================ */
 .navbar {
-    background-color: var(--primary-green);
+    background: linear-gradient(135deg, var(--primary-green) 0%, #1a4a35 100%);
     padding: 0;
     position: sticky;
     top: 0;
@@ -187,11 +187,22 @@ p {
    页脚
    ============================================ */
 .footer {
-    background-color: var(--primary-green);
+    background: linear-gradient(135deg, var(--primary-green) 0%, #1a4a35 100%);
     color: var(--white);
     text-align: center;
-    padding: 24px 20px;
+    padding: 32px 20px 28px;
     margin-top: auto;
+    position: relative;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--sunflower-yellow), var(--primary-green), var(--water-blue));
 }
 
 .footer-note {
@@ -925,7 +936,7 @@ p {
     align-items: center;
     background: rgba(255, 255, 255, 0.72);
     border-radius: 20px;
-    padding: 24px 20px;
+    padding: 32px 20px 28px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
