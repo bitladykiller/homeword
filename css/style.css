@@ -6127,3 +6127,75 @@ img[loading="lazy"].loaded {
         padding: 22px 20px;
     }
 }
+/* ============================================
+   滚动到底彩蛋
+   ============================================ */
+
+.scroll-bottom-egg {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    z-index: 88;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+    transition: transform 0.5s var(--ease-out-expo);
+}
+
+.scroll-bottom-egg.visible {
+    transform: translateX(-50%) translateY(0);
+}
+
+.egg-bubble {
+    background: var(--white);
+    padding: 12px 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 8px;
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+    transition: all 0.4s var(--ease-out-expo) 0.1s;
+}
+
+.scroll-bottom-egg.visible .egg-bubble {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.egg-text {
+    font-size: 0.9rem;
+    color: var(--primary-green);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.egg-sunflower {
+    width: 80px;
+    height: 80px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.5s var(--ease-out-expo) 0.2s;
+}
+
+.scroll-bottom-egg.visible .egg-sunflower {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.egg-sunflower svg {
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+    .egg-text {
+        font-size: 0.8rem;
+    }
+    
+    .egg-sunflower {
+        width: 60px;
+        height: 60px;
+    }
+}
