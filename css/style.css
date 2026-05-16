@@ -6144,9 +6144,9 @@ img[loading="lazy"].loaded {
 
 .scroll-bottom-egg {
     position: fixed;
-    bottom: 0;
+    bottom: 80px;
     left: 50%;
-    transform: translateX(-50%) translateY(100%);
+    transform: translateX(-50%) translateY(calc(100% + 80px));
     z-index: 88;
     display: flex;
     flex-direction: column;
