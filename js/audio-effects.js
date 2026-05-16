@@ -6,7 +6,7 @@
 const AudioEffects = {
     ctx: null,
     enabled: true,
-    volume: 0.3,
+    volume: 0.18,
 
     /**
      * 初始化音频上下文
@@ -21,109 +21,129 @@ const AudioEffects = {
     },
 
     /**
-     * 播放点击音效 - 清脆的短音
+     * 播放点击音效 - 柔和的低频短音
      */
     playClick() {
         if (!this.enabled || !this.ctx) return;
-        this.playTone(800, 0.08, 'sine', 0.15);
+        this.playTone(440, 0.12, 'sine', 0.12, 0.01);
     },
 
     /**
-     * 播放切换音效 - 稍长的滑音
+     * 播放切换音效 - 轻柔的小幅滑音
      */
     playSwitch() {
         if (!this.enabled || !this.ctx) return;
-        this.playSlideTone(600, 800, 0.12, 'sine');
+        this.playSlideTone(330, 440, 0.18, 'sine');
     },
 
     /**
-     * 播放成功/确认音效 - 悦耳的双音
+     * 播放成功/确认音效 - 温暖的双音
      */
     playSuccess() {
         if (!this.enabled || !this.ctx) return;
-        this.playTone(523.25, 0.1, 'sine', 0.2); // C5
-        setTimeout(() => this.playTone(659.25, 0.15, 'sine', 0.2), 80); // E5
+        this.playTone(392, 0.15, 'sine', 0.15, 0.01);   // G4
+        setTimeout(() => this.playTone(523.25, 0.2, 'sine', 0.15, 0.01), 100); // C5
     },
 
     /**
-     * 播放康复进度音效 - 渐强的上升音
+     * 播放康复进度音效 - 渐强的柔和上升音
      */
     playHealProgress(level) {
         if (!this.enabled || !this.ctx) return;
-        const baseFreq = 400 + (level * 80);
-        this.playSlideTone(baseFreq, baseFreq + 100, 0.2, 'sine');
+        const baseFreq = 300 + (level * 60);
+        this.playSlideTone(baseFreq, baseFreq + 70, 0.25, 'sine');
     },
 
     /**
-     * 播放完全康复音效 - 庆祝和弦
+     * 播放完全康复音效 - 柔和的庆祝和弦
      */
     playFullyHealed() {
         if (!this.enabled || !this.ctx) return;
-        // C major chord: C4-E4-G4-C5
-        [261.63, 329.63, 392.00, 523.25].forEach((freq, i) => {
-            setTimeout(() => this.playTone(freq, 0.3, 'sine', 0.25), i * 60);
+        // C major: C4-E4-G4
+        [261.63, 329.63, 392.00].forEach((freq, i) => {
+            setTimeout(() => this.playTone(freq, 0.4, 'sine', 0.15, 0.015), i * 80);
         });
     },
 
     /**
-     * 播放悬浮音效 - 轻柔的气泡音
+     * 播放悬浮音效 - 极轻的低频气泡音
      */
     playHover() {
         if (!this.enabled || !this.ctx) return;
-        this.playTone(1200, 0.05, 'sine', 0.08);
+        this.playTone(520, 0.08, 'sine', 0.05, 0.005);
     },
 
     /**
-     * 播放错误/警告音效
+     * 播放警告音效 - 柔和的低频提示
      */
     playWarning() {
         if (!this.enabled || !this.ctx) return;
-        this.playTone(300, 0.15, 'sawtooth', 0.15);
+        this.playTone(220, 0.2, 'sine', 0.15, 0.005);
     },
 
     /**
-     * 基础播放单音
+     * 基础播放单音 - 带软包络和低通滤波
      */
-    playTone(frequency, duration, type = 'sine', vol = this.volume) {
+    playTone(frequency, duration, type = 'sine', vol = this.volume, attack = 0.005) {
         if (!this.ctx) return;
-        
+
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
-        
-        osc.connect(gain);
+        const filter = this.ctx.createBiquadFilter();
+
+        // 低通滤波器 - 去掉高频尖锐感
+        filter.type = 'lowpass';
+        filter.frequency.value = 1800;
+        filter.Q.value = 0.7;
+
+        osc.connect(filter);
+        filter.connect(gain);
         gain.connect(this.ctx.destination);
-        
+
         osc.frequency.value = frequency;
         osc.type = type;
-        
-        gain.gain.setValueAtTime(vol, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + duration);
-        
-        osc.start(this.ctx.currentTime);
-        osc.stop(this.ctx.currentTime + duration);
+
+        const now = this.ctx.currentTime;
+        // 软包络：快速淡入 + 柔和淡出
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(vol, now + attack);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+        osc.start(now);
+        osc.stop(now + duration + 0.05);
     },
 
     /**
-     * 播放滑音（频率变化）
+     * 播放滑音（频率变化）- 带低通滤波
      */
     playSlideTone(fromFreq, toFreq, duration, type = 'sine') {
         if (!this.ctx) return;
-        
+
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
-        
-        osc.connect(gain);
+        const filter = this.ctx.createBiquadFilter();
+
+        filter.type = 'lowpass';
+        filter.frequency.value = 1500;
+        filter.Q.value = 0.7;
+
+        osc.connect(filter);
+        filter.connect(gain);
         gain.connect(this.ctx.destination);
-        
+
         osc.type = type;
-        osc.frequency.setValueAtTime(fromFreq, this.ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(toFreq, this.ctx.currentTime + duration * 0.7);
-        
-        gain.gain.setValueAtTime(this.volume * 0.5, this.ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + duration);
-        
-        osc.start(this.ctx.currentTime);
-        osc.stop(this.ctx.currentTime + duration);
+
+        const now = this.ctx.currentTime;
+        osc.frequency.setValueAtTime(fromFreq, now);
+        osc.frequency.exponentialRampToValueAtTime(toFreq, now + duration * 0.7);
+
+        // 软包络
+        gain.gain.setValueAtTime(0.001, now);
+        gain.gain.linearRampToValueAtTime(this.volume * 0.4, now + 0.01);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+
+        osc.start(now);
+        osc.stop(now + duration + 0.05);
     },
 
     /**
