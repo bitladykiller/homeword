@@ -26,6 +26,11 @@ const ControlPanel = {
                     <input type="checkbox" id="pollenToggle" checked>
                     <span class="effect-switch"></span>
                 </label>
+                <label class="effect-option">
+                    <span class="effect-label">🌻 向日葵光标</span>
+                    <input type="checkbox" id="cursorToggle" checked>
+                    <span class="effect-switch"></span>
+                </label>
             </div>
         `;
         document.body.appendChild(panel);
@@ -35,6 +40,7 @@ const ControlPanel = {
         const menu = document.getElementById('effectMenu');
         const audioToggle = document.getElementById('audioToggle');
         const pollenToggle = document.getElementById('pollenToggle');
+        const cursorToggle = document.getElementById('cursorToggle');
 
         toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -66,13 +72,21 @@ const ControlPanel = {
             }
         });
 
+        cursorToggle.addEventListener('change', (e) => {
+            if (window.SunflowerCursor) {
+                window.SunflowerCursor.toggle();
+                localStorage.setItem('cursorEnabled', e.target.checked);
+            }
+        });
+
         // 恢复用户偏好
-        this.restorePreferences(audioToggle, pollenToggle);
+        this.restorePreferences(audioToggle, pollenToggle, cursorToggle);
     },
 
-    restorePreferences(audioToggle, pollenToggle) {
+    restorePreferences(audioToggle, pollenToggle, cursorToggle) {
         const audioEnabled = localStorage.getItem('audioEnabled');
         const pollenEnabled = localStorage.getItem('pollenEnabled');
+        const cursorEnabled = localStorage.getItem('cursorEnabled');
 
         if (audioEnabled === 'false') {
             audioToggle.checked = false;
@@ -81,6 +95,16 @@ const ControlPanel = {
         if (pollenEnabled === 'false') {
             pollenToggle.checked = false;
             if (window.PollenEffect) window.PollenEffect.isActive = false;
+        }
+        if (cursorEnabled === 'false') {
+            cursorToggle.checked = false;
+            if (window.SunflowerCursor) {
+                window.SunflowerCursor.isActive = false;
+                if (window.SunflowerCursor.cursorEl) {
+                    window.SunflowerCursor.cursorEl.style.display = 'none';
+                }
+                document.body.style.cursor = 'auto';
+            }
         }
     }
 };

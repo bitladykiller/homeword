@@ -4235,6 +4235,81 @@ section h2::after,
 }
 
 
+/* ============================================
+   向日葵鼠标光标
+   ============================================ */
+
+.sunflower-cursor {
+    position: fixed;
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+    z-index: 10000;
+    transition: transform 0.15s ease, opacity 0.2s ease;
+    will-change: transform, left, top;
+}
+
+.sunflower-cursor svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.15s ease;
+}
+
+/* 悬停可点击元素时放大 */
+.sunflower-cursor.cursor-hover svg {
+    transform: scale(1.25);
+    filter: drop-shadow(0 3px 6px rgba(244, 196, 48, 0.4));
+}
+
+/* 点击时缩小反馈 */
+.sunflower-cursor.cursor-click svg {
+    transform: scale(0.9);
+}
+
+.sunflower-cursor.cursor-hover.cursor-click svg {
+    transform: scale(1.1);
+}
+
+/* 隐藏系统光标 */
+body {
+    cursor: none;
+}
+
+/* 确保特定元素仍显示自定义光标 */
+a, button, [role="button"], input, textarea, select,
+.observation-point, .root-point, .path-step, .soil-layer-item,
+.plant-card, .action-option, .exam-btn, .compare-btn,
+.tab-btn, .toggle-reasons-btn {
+    cursor: none !important;
+}
+
+/* 禁用自定义光标时的回退 */
+body.custom-cursor-disabled {
+    cursor: auto !important;
+}
+
+body.custom-cursor-disabled a,
+body.custom-cursor-disabled button,
+body.custom-cursor-disabled [role="button"],
+body.custom-cursor-disabled input,
+body.custom-cursor-disabled textarea,
+body.custom-cursor-disabled select {
+    cursor: auto !important;
+}
+
+/* 响应式：移动端禁用自定义光标 */
+@media (pointer: coarse) {
+    .sunflower-cursor {
+        display: none !important;
+    }
+    
+    body, a, button, [role="button"], input, textarea, select {
+        cursor: auto !important;
+    }
+}
+
+
 @keyframes page-load {
     0% {
         opacity: 0;
