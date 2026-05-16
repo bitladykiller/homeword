@@ -298,3 +298,128 @@ body { cursor: auto !important; }
     .page-banner { padding: 24px 0 16px; }
     .page-banner h1 { font-size: 1.3rem !important; }
 }
+
+/* ------------------------------------------------------------------ #
+   首页 Hero 花瓣飘落动画
+   # ------------------------------------------------------------------ */
+.hero-petals {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.hero-petal {
+    position: absolute;
+    opacity: 0;
+    animation: petal-fall linear infinite;
+}
+
+@keyframes petal-fall {
+    0% {
+        opacity: 0;
+        transform: translateY(-10%) rotate(0deg) translateX(0);
+    }
+    10% {
+        opacity: 0.7;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(110%) rotate(360deg) translateX(40px);
+    }
+}
+
+/* ------------------------------------------------------------------ #
+   面包屑返回按钮
+   # ------------------------------------------------------------------ */
+.breadcrumb-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--primary-green);
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-right: 16px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(47, 107, 79, 0.08);
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.breadcrumb-back:hover {
+    background: rgba(47, 107, 79, 0.15);
+    text-decoration: none;
+}
+
+.breadcrumb-back svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+/* ------------------------------------------------------------------ #
+   404 页面样式
+   # ------------------------------------------------------------------ */
+.error-page {
+    text-align: center;
+    padding: 80px 20px;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-sunflower {
+    margin-bottom: 32px;
+}
+
+.error-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--primary-green);
+    margin-bottom: 12px;
+}
+
+.error-desc {
+    color: var(--pollution-gray);
+    font-size: 1.1rem;
+    margin-bottom: 32px;
+    max-width: 480px;
+}
+
+.error-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.error-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.error-btn:hover {
+    transform: translateY(-2px);
+}
+
+.error-btn-primary {
+    background: var(--primary-green);
+    color: var(--white);
+}
+
+.error-btn-secondary {
+    background: var(--light-gray);
+    color: var(--primary-green);
+}

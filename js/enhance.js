@@ -7,6 +7,8 @@ const EnhanceUI = {
         this.initReadingProgress();
         this.initHamburgerMenu();
         this.initPageTransition();
+        this.initHeroPetals();
+        this.initBreadcrumbBack();
     },
 
     /**
@@ -40,14 +42,12 @@ const EnhanceUI = {
         const navMenu = document.querySelector('.nav-menu');
         if (!navContainer || !navMenu) return;
 
-        // 创建汉堡按钮
         const toggle = document.createElement('button');
         toggle.className = 'nav-toggle';
         toggle.setAttribute('aria-label', '菜单');
         toggle.innerHTML = '<span></span><span></span><span></span>';
         navContainer.appendChild(toggle);
 
-        // 创建遮罩
         const overlay = document.createElement('div');
         overlay.className = 'nav-overlay';
         document.body.appendChild(overlay);
@@ -69,16 +69,10 @@ const EnhanceUI = {
         };
 
         toggle.addEventListener('click', () => {
-            if (navMenu.classList.contains('open')) {
-                closeMenu();
-            } else {
-                openMenu();
-            }
+            navMenu.classList.contains('open') ? closeMenu() : openMenu();
         });
 
         overlay.addEventListener('click', closeMenu);
-
-        // 点击菜单链接后关闭
         navMenu.querySelectorAll('.nav-link').forEach(link => {
             link.addEventListener('click', closeMenu);
         });
@@ -99,16 +93,76 @@ const EnhanceUI = {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 overlay.classList.add('leaving');
-
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 150);
+                setTimeout(() => { window.location.href = href; }, 150);
             });
         });
 
         window.addEventListener('load', () => {
             overlay.classList.remove('leaving');
         });
+    },
+
+    /**
+     * 首页 Hero 花瓣飘落动画
+     */
+    initHeroPetals() {
+        const container = document.getElementById('heroPetals');
+        if (!container) return;
+
+        const petalColors = ['#F4C430', '#FFD700', '#E8D020', '#90C460', '#5A9A4A'];
+        const petalCount = 12;
+
+        for (let i = 0; i < petalCount; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'hero-petal';
+
+            const size = 8 + Math.random() * 14;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 8;
+            const duration = 6 + Math.random() * 6;
+            const color = petalColors[Math.floor(Math.random() * petalColors.length)];
+            const drift = -30 + Math.random() * 60;
+
+            petal.style.cssText = `
+                left: ${left}%;
+                width: ${size}px;
+                height: ${size * 1.4}px;
+                background: ${color};
+                border-radius: 50% 50% 50% 0;
+                animation-delay: ${delay}s;
+                animation-duration: ${duration}s;
+                --drift: ${drift}px;
+            `;
+
+            container.appendChild(petal);
+        }
+    },
+
+    /**
+     * 面包屑返回按钮
+     */
+    initBreadcrumbBack() {
+        const breadcrumb = document.querySelector('.breadcrumb .container');
+        if (!breadcrumb) return;
+
+        // 查找面包屑中的上级链接（倒数第二个 a 标签）
+        const links = breadcrumb.querySelectorAll('a');
+        if (links.length === 0) return;
+
+        // 取最后一个 a 作为返回目标
+        const parentLink = links[links.length - 1];
+        const parentTitle = parentLink.textContent;
+        const parentHref = parentLink.getAttribute('href');
+
+        const backBtn = document.createElement('a');
+        backBtn.className = 'breadcrumb-back';
+        backBtn.href = parentHref;
+        backBtn.innerHTML = `
+            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            返回${parentTitle}
+        `;
+
+        breadcrumb.insertBefore(backBtn, breadcrumb.firstChild);
     }
 };
 
